@@ -1,0 +1,16 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: content/index
+chapters:
+  - file: content/history/intro
+    sections:
+      - file: content/history/env-econo
+      - file: content/history/ecolo-econo
+  - file: content/economics/growthModels/Intro
+    sections:
+      - file: content/economics/growthModels/models/SolowModel
+  - file: content/appendix/intro
+    sections:
+      - file: content/appendix/modelling

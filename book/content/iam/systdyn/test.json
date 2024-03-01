@@ -1,0 +1,14 @@
+{
+  "stocks": [
+    {
+      "name": "pop",
+      "init": 100,
+      "func": "pg * inits[0]"
+    },
+    {
+      "name": "cap",
+      "init": 1000000,
+      "func": "inits[0] + inits[1]"
+    }
+  ]
+}

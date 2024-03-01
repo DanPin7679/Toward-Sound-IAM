@@ -1,0 +1,43 @@
+{
+  "EarthModules": [
+    {
+      "name": "Economy",
+      "type": "Stock",
+      "color": "blue",
+      "coord": {
+        "x": 300,
+        "y": 100
+      },
+      "size": {
+        "w": 300,
+        "h": 200
+      }
+    },
+    {
+      "name": "Planet",
+      "type": "Stock",
+      "color": "green",
+      "coord": {
+        "x": 300,
+        "y": 400
+      },
+      "size": {
+        "w": 300,
+        "h": 200
+      }
+    },
+    {
+      "name": "Energy",
+      "type": "Flow",
+      "color": "orange",
+      "coord": {
+        "x": 100,
+        "y": 200
+      },
+      "size": {
+        "w": 200,
+        "h": 75
+      }
+    }
+  ]
+}

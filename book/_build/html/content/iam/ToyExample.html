@@ -1,0 +1,1302 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The Model &#8212; Modelling the World</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/iam/ToyExample';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Modelling the World</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../history/intro.html">Evolution of the different Paradigms</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history/env-econo.html">Environmental Economics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history/ecolo-econo.html">Ecological Economics</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../economics/growthModels/Intro.html">Growth Models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../economics/growthModels/models/SolowModel.html">The Solow-Swan Growth Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../appendix/intro.html">Appendix</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/modelling.html">Modelling</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/iam/ToyExample.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/iam/ToyExample.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carbon-cycle-module">Carbon cycle module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-module">Climate module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-energy-in-the-atmosphere">Extra energy in the atmosphere</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-term-temperature-effect">Long term temperature effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-formulation">Python formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#emissions">Emissions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Carbon cycle module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Climate module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#economics-module">Economics Module</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="the-model">
+<h1>The Model<a class="headerlink" href="#the-model" title="Link to this heading">#</a></h1>
+<p>The input (or forcing ) to the carbon cycle model are annual emissions of <span class="math notranslate nohighlight">\(CO_2\)</span> , measured in Mt C (megatonne carbon = million metric tonnes of carbon). 1 The output of the carbon cycle model is the atmospheric concentration of <span class="math notranslate nohighlight">\(CO_2\)</span> , measured in ppm (parts per million by volume).</p>
+<p>The input (or forcing) to the climate model is the atmospheric concentration of carbon dioxide, again measured in ppm. The output of the climate dynamics model is the yearly average temperature increase over pre-industrial temperatures in .</p>
+<p>The two components are coupled via the atmospheric concentration of <span class="math notranslate nohighlight">\(CO_2\)</span> , i.e., the output of the carbon cycle model is an input to the climate dynamics model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;/Users/danypineault/Documents/Book/book/image/IAM.jpg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/IPython/core/display.py:1045,</span> in <span class="ni">Image._data_and_metadata</span><span class="nt">(self, always_both)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1045</span>     <span class="n">b64_data</span> <span class="o">=</span> <span class="n">b2a_base64</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1046</span> <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="ne">TypeError</span>: a bytes-like object is required, not &#39;str&#39;
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/IPython/core/formatters.py:974,</span> in <span class="ni">MimeBundleFormatter.__call__</span><span class="nt">(self, obj, include, exclude)</span>
+<span class="g g-Whitespace">    </span><span class="mi">971</span>     <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">973</span>     <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">974</span>         <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">975</span>     <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">976</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/IPython/core/display.py:1035,</span> in <span class="ni">Image._repr_mimebundle_</span><span class="nt">(self, include, exclude)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1033</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1034</span>     <span class="n">mimetype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mimetype</span>
+<span class="ne">-&gt; </span><span class="mi">1035</span>     <span class="n">data</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_and_metadata</span><span class="p">(</span><span class="n">always_both</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1036</span>     <span class="k">if</span> <span class="n">metadata</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1037</span>         <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="n">metadata</span><span class="p">}</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/IPython/core/display.py:1047,</span> in <span class="ni">Image._data_and_metadata</span><span class="nt">(self, always_both)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1045</span>     <span class="n">b64_data</span> <span class="o">=</span> <span class="n">b2a_base64</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1046</span> <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1047</span>     <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1048</span>         <span class="s2">&quot;No such file or directory: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span> <span class="kn">from</span> <span class="nn">e</span>
+<span class="g g-Whitespace">   </span><span class="mi">1049</span> <span class="n">md</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">   </span><span class="mi">1050</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span>: No such file or directory: &#39;/Users/danypineault/Documents/Book/book/image/IAM.jpg&#39;
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/IPython/core/display.py:1045,</span> in <span class="ni">Image._data_and_metadata</span><span class="nt">(self, always_both)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1045</span>     <span class="n">b64_data</span> <span class="o">=</span> <span class="n">b2a_base64</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1046</span> <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="ne">TypeError</span>: a bytes-like object is required, not &#39;str&#39;
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/IPython/core/formatters.py:344,</span> in <span class="ni">BaseFormatter.__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span>     <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span>     <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">344</span>         <span class="k">return</span> <span class="n">method</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">345</span>     <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/IPython/core/display.py:1067,</span> in <span class="ni">Image._repr_png_</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1065</span> <span class="k">def</span> <span class="nf">_repr_png_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1066</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_FMT_PNG</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1067</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_and_metadata</span><span class="p">()</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/IPython/core/display.py:1047,</span> in <span class="ni">Image._data_and_metadata</span><span class="nt">(self, always_both)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1045</span>     <span class="n">b64_data</span> <span class="o">=</span> <span class="n">b2a_base64</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1046</span> <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1047</span>     <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1048</span>         <span class="s2">&quot;No such file or directory: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span> <span class="kn">from</span> <span class="nn">e</span>
+<span class="g g-Whitespace">   </span><span class="mi">1049</span> <span class="n">md</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">   </span><span class="mi">1050</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span>: No such file or directory: &#39;/Users/danypineault/Documents/Book/book/image/IAM.jpg&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Image object&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The model will run in yearly time steps. It will start in 1750 and end in 2300.</p>
+<section id="carbon-cycle-module">
+<h2>Carbon cycle module<a class="headerlink" href="#carbon-cycle-module" title="Link to this heading">#</a></h2>
+<p>The carbon cycle model is a five-box model. The five boxes do not correspond to anything in the physical world; they are a mathematical abstraction that as a whole mimics the results from much more complicated models. In this model, all atmospheric <span class="math notranslate nohighlight">\(CO_2\)</span> concentrations live in one of five boxes. If you want to compute the total atmospheric <span class="math notranslate nohighlight">\(CO_2\)</span> concentration at any point in time, you add the amount of <span class="math notranslate nohighlight">\(CO_2\)</span> in the five boxes. Over time, <span class="math notranslate nohighlight">\(CO_2\)</span> disappears from all of these boxes, at different rates for each individual box. New anthropogenic <span class="math notranslate nohighlight">\(CO_2\)</span> emissions are added every year to the atmosphere.</p>
+<p>In the five-box model these yearly influxes of new <span class="math notranslate nohighlight">\(CO_2\)</span> are distributed by fixed shares into the five boxes: 13% go into the first box, 20% into the second, 32% into the third, 25% into the fourth and the remaining 10% into the fifth box. There are consequently five variables that represent the five boxes and each of these variables takes on a different value in each year.</p>
+<p>The equation that is used to compute the amount of <span class="math notranslate nohighlight">\(CO_2\)</span> in box i (which takes values from 1 to 5) at time t (which takes on values from 1750 to 2020) is:</p>
+<p>\begin{align}
+L_{i, t} = (1-\delta_i) L_{i, t-1} + \nu_i \chi M^*_{t-1}
+\end{align}</p>
+<p>where:</p>
+<ul class="simple">
+<li><p>Variable <span class="math notranslate nohighlight">\(L_{i,t}\)</span> is the atmospheric load, the amount of <span class="math notranslate nohighlight">\(CO_2\)</span> in box <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>, measured in ppm</p></li>
+<li><p>Parameter <span class="math notranslate nohighlight">\(\delta_i\)</span> is the degradation rate, the share of <span class="math notranslate nohighlight">\(CO_2\)</span> that disappears each year from box <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(1 − δ\)</span> i is the share of <span class="math notranslate nohighlight">\(CO_2\)</span> in box <span class="math notranslate nohighlight">\(i\)</span> that stays in the atmosphere until the next time period</p></li>
+<li><p><span class="math notranslate nohighlight">\(\nu_i\)</span> i is the share of emissions that goes into box <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\chi\)</span> is a unit conversion factor: <span class="math notranslate nohighlight">\(CO_2\)</span> emissions in our model are measured in <span class="math notranslate nohighlight">\(Mt C\)</span>, but atmospheric <span class="math notranslate nohighlight">\(CO_2\)</span> concentrations are measured in ppm: <span class="math notranslate nohighlight">\(\chi\)</span> converts from the unit <span class="math notranslate nohighlight">\(Mt C\)</span> to <span class="math notranslate nohighlight">\(CO_2\)</span> ppm</p></li>
+<li><p><span class="math notranslate nohighlight">\(M^∗_t\)</span> are world total emissions of <span class="math notranslate nohighlight">\(CO_2\)</span> in year <span class="math notranslate nohighlight">\(t\)</span>, measured in <span class="math notranslate nohighlight">\(Mt C\)</span>.</p></li>
+</ul>
+<p>Equation (13.1) is a difference equation, that is, for the first year only, you should not use Equation (13.1), but instead use initial values: <span class="math notranslate nohighlight">\(L_{i,1750}=0\)</span> except <span class="math notranslate nohighlight">\(L_{1,1750} = 275\)</span>.</p>
+<p>The final step in the carbon cycle model is to compute atmospheric <span class="math notranslate nohighlight">\(CO_2\)</span> concentrations at each point in time:
+\begin{align}
+L_t = \sum_{i=1}^5 L_{i,t} = L_{1,t}+L_{2,t}+L_{3,t}+L_{4,t}+L_{5,t}
+\end{align}
+where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L_t\)</span> is the atmospheric concentration of <span class="math notranslate nohighlight">\(CO_2\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> , it is the sum of the five boxes at that time.</p></li>
+</ul>
+</section>
+<section id="climate-module">
+<h2>Climate module<a class="headerlink" href="#climate-module" title="Link to this heading">#</a></h2>
+<p>The climate model has two parts: the first part computes the extra energy in the atmosphere and the long term temperature effect. The second part computes the yearly temperature increase over time.</p>
+<section id="extra-energy-in-the-atmosphere">
+<h3>Extra energy in the atmosphere<a class="headerlink" href="#extra-energy-in-the-atmosphere" title="Link to this heading">#</a></h3>
+<p>The amount of extra energy caused by rising <span class="math notranslate nohighlight">\(CO_2\)</span> concentrations is called the radiative forcing and is measured in Watts per square metre, <span class="math notranslate nohighlight">\(Wm^{−2}\)</span>. The equation to compute this variable is</p>
+<p>\begin{align}
+F_t = 5.35 \ln (\frac{C_t}{C_{pre}})
+\end{align}</p>
+<p><span class="math notranslate nohighlight">\(F_t\)</span> is the radiative forcing at time t caused by <span class="math notranslate nohighlight">\(CO_2\)</span> in <span class="math notranslate nohighlight">\(Wm^{−2}\)</span></p>
+<p><span class="math notranslate nohighlight">\(C_t\)</span> is the atmospheric <span class="math notranslate nohighlight">\(CO_2\)</span> concentration at point t in ppm, as computed by the previous component.</p>
+<p><span class="math notranslate nohighlight">\(C_{pre}\)</span> is the preindustrial level of atmospheric <span class="math notranslate nohighlight">\(CO_2\)</span> concentrations, and we use 275 ppm for this.</p>
+</section>
+</section>
+<section id="long-term-temperature-effect">
+<h2>Long term temperature effect<a class="headerlink" href="#long-term-temperature-effect" title="Link to this heading">#</a></h2>
+<p>The next step in the model is to global mean surface air temperature. The equation for that is</p>
+<p>\begin{align}
+T^A_t = T^A_{t-1} + \psi_1(\psi_2 F_t - T^A_{t-1}) + \psi_3(T^O_{t-1}-T^A_{t-1})
+\end{align}</p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T^A_t\)</span> is the increase in global average surface temperature</p></li>
+<li><p><span class="math notranslate nohighlight">\(\psi_2 = 1.15\)</span> is a parameter</p></li>
+<li><p><span class="math notranslate nohighlight">\(5.35 \psi_2 ln(2) = 4.26\)</span> is the climate sensitivity, the equilibrium warming due to a doubling of the atmospheric concentration of carbon dioxide</p></li>
+<li><p><span class="math notranslate nohighlight">\(\psi_1 = 0.0256\)</span> is a parameter that determines how fast the atmosphere responds to a deviation between the actual and the equilibrium temperature</p></li>
+<li><p><span class="math notranslate nohighlight">\(\psi_3 = 0.00738\)</span> is a parameter that determines how fast the atmosphere responds to a deviation between the temperature of the atmosphere and ocean</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(T^O_t\)</span> is the temperature of the ocean, which follows:
+\begin{align}
+T^O_t = T^O_{t-1} + \psi_4(T^A_{t-1}-T^O_{t-1})
+\end{align}
+where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\psi_4 = 0.00568\)</span> is a parameter that determines how fast the ocean responds to a deviation between the temperature of the atmosphere and ocean.</p></li>
+</ul>
+<p>The temperatures of atmosphere and ocean are government by a system of coupled difference equations. The ocean’s temperature depends on its own past and on the atmosphere’s past, and so does the atmosphere’s temperature. We therefore need to initialize the temperatures for the year 1850. The initialization is <span class="math notranslate nohighlight">\(T^A_{1850} = T^O_{1850} = 0\)</span>. As a result, our model yields temperature anomalies , that is, warming relative to pre-industrial times.</p>
+</section>
+<section id="python-formulation">
+<h2>Python formulation<a class="headerlink" href="#python-formulation" title="Link to this heading">#</a></h2>
+<section id="emissions">
+<h3>Emissions<a class="headerlink" href="#emissions" title="Link to this heading">#</a></h3>
+<p>For now, we will take emissions as given. Let download the six scenarios:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;/Users/danypineault/Documents/Book/book/data/EmissionScenarios.csv&quot;</span>
+<span class="n">scenarios_emissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;/Users/danypineault/Documents/Book/book/data/EmissionScenarios.csv&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">scenarios_emissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/pandas/io/parsers/readers.py:912,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">900</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">908</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">909</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">912</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/pandas/io/parsers/readers.py:577,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">577</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">579</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">580</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1407,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1404</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1406</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1407</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1661,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1659</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1660</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1661</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1662</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1663</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1664</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1665</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1666</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1667</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1668</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1669</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1670</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1671</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1672</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/pandas/io/common.py:859,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">854</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">855</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">856</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">857</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">859</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">867</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/danypineault/Documents/Book/book/data/EmissionScenarios.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id1">
+<h2>Carbon cycle module<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Let represent the function <span class="math notranslate nohighlight">\(L_t\)</span> as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">atmos_load</span><span class="p">(</span><span class="n">t_span</span><span class="p">,</span> <span class="n">L_init</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">share_emit</span><span class="p">,</span> <span class="n">conv_fact</span><span class="p">,</span> <span class="n">tot_emit</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">t_span</span><span class="p">),</span> <span class="mi">6</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span> 
+        <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">L_init</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_span</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>  
+            <span class="n">L</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">delta</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">L</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">share_emit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">conv_fact</span> <span class="o">*</span> <span class="n">tot_emit</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            
+    <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">275</span>
+    <span class="k">for</span> <span class="n">t2</span> <span class="ow">in</span> <span class="n">t_span</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>  
+        <span class="n">L</span><span class="p">[</span><span class="n">t2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">L</span><span class="p">[</span><span class="n">t2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">L</span><span class="p">[</span><span class="n">t2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">L</span><span class="p">[</span><span class="n">t2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="n">L</span><span class="p">[</span><span class="n">t2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span><span class="o">+</span><span class="n">L</span><span class="p">[</span><span class="n">t2</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">L</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>Climate module<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Let represent the forcing function <span class="math notranslate nohighlight">\(F_t\)</span> as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">eval_forcing</span><span class="p">(</span><span class="n">Ct</span><span class="p">,</span> <span class="n">Cpre</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">5.35</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Ct</span> <span class="o">/</span> <span class="n">Cpre</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and the global mean surface air temperature <span class="math notranslate nohighlight">\(T^A\)</span> as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">eval_T</span><span class="p">(</span><span class="n">t_span</span><span class="p">,</span> <span class="n">t_init</span><span class="p">,</span> <span class="n">chis</span><span class="p">,</span> <span class="n">forcing</span><span class="p">):</span>
+    <span class="n">Ta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t_span</span><span class="p">))</span>
+    <span class="n">To</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t_span</span><span class="p">))</span>
+    <span class="p">[</span><span class="n">chi1</span><span class="p">,</span> <span class="n">chi2</span><span class="p">,</span> <span class="n">chi3</span><span class="p">,</span> <span class="n">chi4</span><span class="p">]</span> <span class="o">=</span> <span class="n">chis</span>
+
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_span</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">t</span><span class="o">&lt;=</span><span class="mi">100</span><span class="p">:</span>
+            <span class="n">Ta</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+            <span class="n">To</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Ta</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ta</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">chi1</span> <span class="o">*</span> <span class="p">(</span><span class="n">chi2</span> <span class="o">*</span> <span class="n">forcing</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">Ta</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">chi3</span> <span class="o">*</span> <span class="p">(</span><span class="n">To</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Ta</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">To</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">To</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">chi4</span> <span class="o">*</span> <span class="p">(</span><span class="n">Ta</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span><span class="n">To</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">Ta</span><span class="p">,</span> <span class="n">To</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_scens</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">scens</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="nb">max</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span>
+    <span class="p">)</span>
+    <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scens</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">Year</span><span class="p">[</span><span class="mi">200</span><span class="p">:],</span> <span class="n">y</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">200</span><span class="p">:],</span>
+                            <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span>
+                            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+        <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">])</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">scen_emission</span><span class="p">):</span>
+    <span class="n">t_span</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">scen_emission</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">L_init</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+    <span class="n">share_emit</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.320</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">]</span>
+    <span class="n">deltas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">363</span><span class="p">),</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">74</span><span class="p">),</span><span class="mi">1</span><span class="o">-</span>  <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">17</span><span class="p">),</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
+    <span class="n">t_init</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+    <span class="n">chis</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0256</span><span class="p">,</span> <span class="mf">1.148910335</span><span class="p">,</span> <span class="mf">0.00738</span><span class="p">,</span> <span class="mf">0.00568</span><span class="p">]</span>
+    
+    <span class="n">conv_fact</span> <span class="o">=</span>  <span class="mf">0.00047</span>
+    <span class="n">concentration</span> <span class="o">=</span> <span class="n">atmos_load</span><span class="p">(</span><span class="n">t_span</span><span class="p">,</span> <span class="n">L_init</span><span class="p">,</span> <span class="n">deltas</span><span class="p">,</span> <span class="n">share_emit</span><span class="p">,</span> <span class="n">conv_fact</span><span class="p">,</span> <span class="n">scen_emission</span><span class="p">)</span>
+    <span class="n">forcing</span> <span class="o">=</span> <span class="n">eval_forcing</span><span class="p">(</span><span class="n">concentration</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">concentration</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">ta</span><span class="p">,</span> <span class="n">to</span> <span class="o">=</span> <span class="n">eval_T</span><span class="p">(</span><span class="n">t_span</span><span class="p">,</span> <span class="n">t_init</span><span class="p">,</span> <span class="n">chis</span><span class="p">,</span> <span class="n">forcing</span><span class="p">)</span>
+    
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Year&quot;</span><span class="p">:</span> <span class="n">t_span</span><span class="o">+</span><span class="mi">1750</span><span class="p">,</span>
+            <span class="s2">&quot;Emission&quot;</span><span class="p">:</span> <span class="n">scen_emission</span><span class="p">,</span>
+            <span class="s2">&quot;Concentration&quot;</span><span class="p">:</span> <span class="n">concentration</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s2">&quot;Box1&quot;</span><span class="p">:</span> <span class="n">concentration</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s2">&quot;Box2&quot;</span><span class="p">:</span> <span class="n">concentration</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span>
+            <span class="s2">&quot;Box3&quot;</span><span class="p">:</span> <span class="n">concentration</span><span class="p">[:,</span><span class="mi">3</span><span class="p">],</span>
+            <span class="s2">&quot;Box4&quot;</span><span class="p">:</span> <span class="n">concentration</span><span class="p">[:,</span><span class="mi">4</span><span class="p">],</span>
+            <span class="s2">&quot;Box5&quot;</span><span class="p">:</span> <span class="n">concentration</span><span class="p">[:,</span><span class="mi">5</span><span class="p">],</span>
+            <span class="s2">&quot;Forcing&quot;</span><span class="p">:</span> <span class="n">forcing</span><span class="p">,</span>
+            <span class="s2">&quot;TempAtmos&quot;</span><span class="p">:</span> <span class="n">ta</span><span class="p">,</span>
+            <span class="s2">&quot;TempOcean&quot;</span><span class="p">:</span> <span class="n">to</span>
+        <span class="p">}</span>
+        
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">t_span</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scen_1a</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">scenarios_emissions</span><span class="p">[</span><span class="s2">&quot;s1aConstant&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+<span class="n">scen_1b</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">scenarios_emissions</span><span class="p">[</span><span class="s2">&quot;s1bPlus2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+<span class="n">scen_2a</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">scenarios_emissions</span><span class="p">[</span><span class="s2">&quot;s2a236pct&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+<span class="n">scen_2b</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">scenarios_emissions</span><span class="p">[</span><span class="s2">&quot;s2b529pct&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+<span class="n">scen_3a</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">scenarios_emissions</span><span class="p">[</span><span class="s2">&quot;s3a375pct&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+<span class="n">scen_3b</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">scenarios_emissions</span><span class="p">[</span><span class="s2">&quot;s3b196pct&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+<span class="n">scens</span> <span class="o">=</span> <span class="p">[</span><span class="n">scen_1a</span><span class="p">,</span> <span class="n">scen_1b</span><span class="p">,</span> <span class="n">scen_2a</span><span class="p">,</span> <span class="n">scen_2b</span><span class="p">,</span> <span class="n">scen_3a</span><span class="p">,</span> <span class="n">scen_3b</span><span class="p">]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;scen_1a&quot;</span><span class="p">,</span> <span class="s2">&quot;scen_1b&quot;</span><span class="p">,</span> <span class="s2">&quot;scen_2a&quot;</span><span class="p">,</span> <span class="s2">&quot;scen_2b&quot;</span><span class="p">,</span> <span class="s2">&quot;scen_3a&quot;</span><span class="p">,</span> <span class="s2">&quot;scen_3b&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_scens</span><span class="p">(</span><span class="s2">&quot;Concentration&quot;</span><span class="p">,</span> <span class="s2">&quot;CO2 Concentration&quot;</span><span class="p">,</span> <span class="n">scens</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="mi">900</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>                            <div id="a8c00da6-dd74-4389-a454-e9542c1819be" class="plotly-graph-div" style="height:500px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("a8c00da6-dd74-4389-a454-e9542c1819be")) {                    Plotly.newPlot(                        "a8c00da6-dd74-4389-a454-e9542c1819be",                        [{"mode":"lines","name":"scen_1a","x":[1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199,2200,2201,2202,2203,2204,2205,2206,2207,2208,2209,2210,2211,2212,2213,2214,2215,2216,2217,2218,2219,2220,2221,2222,2223,2224,2225,2226,2227,2228,2229,2230,2231,2232,2233,2234,2235,2236,2237,2238,2239,2240,2241,2242,2243,2244,2245,2246,2247,2248,2249,2250,2251,2252,2253,2254,2255,2256,2257,2258,2259,2260,2261,2262,2263,2264,2265,2266,2267,2268,2269,2270,2271,2272,2273,2274,2275,2276,2277,2278,2279,2280,2281,2282,2283,2284,2285,2286,2287,2288,2289,2290,2291,2292,2293,2294,2295,2296,2297,2298,2299,2300],"y":[292.7186061406113,293.19000875322297,293.71534869216913,294.24159501668385,294.77876166027073,295.3169629123733,295.9294082377316,296.5917081162377,297.2830887151168,297.9879492051385,298.7370569688515,299.52478519765316,300.3014006802289,301.11367931338077,301.9796885252033,302.90443766933487,303.8732814214301,304.89624619244097,305.9470733715012,307.0580579627134,308.2466786223629,309.538117984686,310.8733007633048,312.25877247568286,313.7275899468004,315.1687891884266,316.5703513541359,318.0748514921361,319.6271133212495,321.17876109854893,322.8356760811276,324.43566266313604,325.93228977339277,327.3913209637625,328.82425027924467,330.3286825110857,331.8856251306668,333.49726976260933,335.1512237147074,336.8780590419358,338.63146989391754,340.3852479251645,342.15296973791703,343.86511414601654,345.5519390057027,347.2705345975316,349.0311407629976,350.82703355298474,352.6500242678568,354.43482695922347,356.171250642912,357.9659173207718,359.8151484110023,361.6689488972862,363.69325143197625,365.86446911274385,368.1388602482964,370.49549920931986,372.90020682120996,375.3600852436941,377.9691514961428,380.6925192343427,383.51296119806386,386.4591524517736,389.3911899258603,392.21905928143855,395.29682869212576,398.4781554344635,401.67257964364387,404.9130711866278,408.1060116423316,411.2311506395353,414.31504550576904,417.36038518413113,420.36927423703753,423.34343914684854,426.28435474945667,429.1933221520505,432.0715171547515,434.92002071613155,437.7398384657294,440.53191351471315,443.29713514647386,446.03634495622725,448.75034139428357,451.43988329481124,454.1056927456294,456.7484575171529,459.3688331851391,461.9674450311109,464.5448897734158,467.1017371630059,469.6385314664684,472.1557928517143,474.6540186873236,477.1336847637669,479.5952464429563,482.0391397414202,484.4657823516164,486.8755746053477,489.2689003828463,491.6461279707772,494.00761087216665,496.3536885710462,498.6846872544218,501.00092049401394,503.30268989006754,505.5902856793901,507.86398730965686,510.1240639818946,512.3707751629562,514.6043710696817,516.8250931263586,519.0331743969862,521.2288399937783,523.412307463244,525.5837871511194,527.7434825473423,529.8915906122019,532.0283020847239,534.1538017742979,536.2682688364879,538.3718770339233,540.4647949831078,542.5471863879428,544.6192102607093,546.6810211312182,548.7327692447925,550.7746007497076,552.8066578746843,554.829079096991,556.8419993016817,558.8455499324658,560.83985913468,562.8250518908018,564.8012501489208,566.7685729445639,568.7271365162403,570.6770544150611,572.6184376087571,574.551394580412,576.4760314221985,578.3924519243998,580.3007576599714,582.2010480648946,584.0934205145503,585.9779703963351,587.8547911787231,589.7239744769719,591.5856101156536,593.4397861881865,595.2865891135309,597.1261036902014,598.9584131477453,600.7835991958204,602.6017420710056,604.4129205814639,606.2172121495761,608.0146928526508,609.8054374618172,611.589519479196,613.3670111734391,615.1379836137276,616.9025067023059,618.6606492056334,620.4124787842214,622.1580620212301,623.8974644498835,625.6307505797707,627.3579839220844,629.079227013858,630.7945414412465,632.5039878619044,634.207626026506,635.9055147994476,637.5977121787787,639.2842753153968,640.9652605315422,642.6407233386308,644.3107184544544,645.9752998197807,647.6345206143809,649.2884332725164,650.9370894979045,652.5805402781937,654.218835898968,655.8520259573045,657.4801593749028,659.1032844108101,660.7214486737549,662.3346991341123,663.9430821355143,665.5466434061226,667.1454280695773,668.7394806556383,670.3288451105291,671.9135648069993,673.4936825541156,675.0692406067947,676.6402806750848,678.2068439332121,679.7689710283965,681.3267020894492,682.8800767351584,684.4291340824738,685.9739127544962,687.5144508882798,689.0507861424553,690.582955704679,692.1109962989153,693.6349441925594,695.1548352034035,696.6707047064549,698.182587640609,699.6905185151836,701.1945314163185,702.6946600132449,704.1909375644292,705.6833969235955,707.1720705456294,708.6569904923687,710.1381884382835,711.6156956760482,713.0895431220115,714.5597613215626,716.0263804544035,717.4894303397219,718.9489404412753,720.4049398723837,721.8574574008339,723.3065214537015,724.7521601220876,726.1944011657765,727.6332720178141,729.0687997890099,730.5010112723648,731.9299329474261,733.3555909845702,734.7780112492177,736.1972193059804,737.6132404227412,739.0260995746705,740.4358214481782,741.8424304448056,743.2459506850556,744.646406012164,746.0438199958126,747.438215935787,748.8296168655773,750.2180455559256,751.6035245183189,752.9860760084314,754.3657220295146,755.742484335737,757.1163844354761,758.4874435945596,759.855682839462,761.2211229604518,762.5837845146958,763.9436878293167,765.3008530044068,766.6552999160002,768.0070482189996,769.3561173500636,770.702526530453,772.0462947688346,773.3874408640478,774.725983407831,776.0619407875095,777.3953311886464,778.726172597656,780.0544828043808,781.3802794046321,782.7035798026967,784.0244012138068,785.3427606665775,786.6586750054098,787.9721608928603,789.2832348119787,790.5919130686129,791.8982117936831,793.202146945423,794.5037343115926,795.8029895116591,797.0999279989497,798.3945650627721,799.6869158305097,800.9769952696864,802.2648181900026,803.5503992453461,804.833752935773,806.114893609464,807.3938354646533,808.6705925515306,809.9451787741195,811.2176078921291,812.48789352278,813.7560491426084,815.0220880892427,816.2860235631593,817.5478686294122,818.8076362193407,820.0653391322545,821.3209900370956,822.5746014740781,823.8261858563062,825.0757554713704,826.3233224829219,827.568898932228,828.8124967397038,830.0541277064258,831.2938035156242,832.5315357341555,833.7673358139558,835.0012150934746,836.2331847990895,837.4632560465013,838.6914398421129,839.9177470843867,841.1421885651869,842.3647749711017,843.5855168847495,844.804424786067,846.0215090535805,847.236779965661,848.4502477017603,849.6619223436342,850.8718138765466,852.0799321904598,853.2862870812068,854.4908882516505,855.6937453128257,856.8948677850674,858.0942650991229,859.2919465972507,860.487921534303,861.6821990787961,862.8747883139649,864.0656982388044,865.2549377690975,866.4425157384285,867.628440899184,868.8127219235408,869.9953674044397,871.1763858565478,872.3557857172071,873.5335753473713,874.7097630325296,875.8843569836198,877.0573653379271,878.2287961599732],"type":"scatter"},{"mode":"lines","name":"scen_1b","x":[1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199,2200,2201,2202,2203,2204,2205,2206,2207,2208,2209,2210,2211,2212,2213,2214,2215,2216,2217,2218,2219,2220,2221,2222,2223,2224,2225,2226,2227,2228,2229,2230,2231,2232,2233,2234,2235,2236,2237,2238,2239,2240,2241,2242,2243,2244,2245,2246,2247,2248,2249,2250,2251,2252,2253,2254,2255,2256,2257,2258,2259,2260,2261,2262,2263,2264,2265,2266,2267,2268,2269,2270,2271,2272,2273,2274,2275,2276,2277,2278,2279,2280,2281,2282,2283,2284,2285,2286,2287,2288,2289,2290,2291,2292,2293,2294,2295,2296,2297,2298,2299,2300],"y":[292.7186061406113,293.19000875322297,293.71534869216913,294.24159501668385,294.77876166027073,295.3169629123733,295.9294082377316,296.5917081162377,297.2830887151168,297.9879492051385,298.7370569688515,299.52478519765316,300.3014006802289,301.11367931338077,301.9796885252033,302.90443766933487,303.8732814214301,304.89624619244097,305.9470733715012,307.0580579627134,308.2466786223629,309.538117984686,310.8733007633048,312.25877247568286,313.7275899468004,315.1687891884266,316.5703513541359,318.0748514921361,319.6271133212495,321.17876109854893,322.8356760811276,324.43566266313604,325.93228977339277,327.3913209637625,328.82425027924467,330.3286825110857,331.8856251306668,333.49726976260933,335.1512237147074,336.8780590419358,338.63146989391754,340.3852479251645,342.15296973791703,343.86511414601654,345.5519390057027,347.2705345975316,349.0311407629976,350.82703355298474,352.6500242678568,354.43482695922347,356.171250642912,357.9659173207718,359.8151484110023,361.6689488972862,363.69325143197625,365.86446911274385,368.1388602482964,370.49549920931986,372.90020682120996,375.3600852436941,377.9691514961428,380.6925192343427,383.51296119806386,386.4591524517736,389.3911899258603,392.21905928143855,395.29682869212576,398.4781554344635,401.67257964364387,404.9130711866278,408.1060116423316,411.2311506395353,414.4226755057691,417.67886161770264,420.999520527641,424.38507879115036,427.83585881913615,431.3533655221968,434.93825243215,438.59221215941176,442.31646944006803,446.1122686122416,449.98133021906165,453.92487560181513,457.94459745588443,462.0421568456858,466.2187177205621,470.47638743351524,474.81674621092327,479.2413567635022,483.7522343555715,488.3508796048745,493.0387840531289,497.81836774050487,502.6910429677526,507.6591640548276,512.7245564312811,517.8890260455901,523.1548293392167,528.5237060144974,533.997854610435,539.5794326209997,545.2705629491732,551.0738081716238,556.9907359749669,563.0243338953671,569.1765678623361,575.4498649020618,581.8470815880856,588.3705420227915,595.022546693069,601.8058421723587,608.7231237842562,615.7770436900043,622.9702162290181,630.3056915713289,637.7859908425906,645.4145532492633,653.193799767586,661.1270829980485,669.2176864472341,677.468366697248,685.882328818295,694.4631965285904,703.2140513244906,712.1384121392283,721.2402081503544,730.5223495840036,739.9886759366241,749.6429543284195,759.4888911685807,769.5306098353033,779.7716884253332,790.2161386434988,800.8679082084259,811.7313589576248,822.8112448813092,834.1112862439035,845.6361199575404,857.3898293732785,869.3773944271635,881.6036973918218,894.0730692352126,906.790737825969,919.7618325435254,932.9909299784119,946.4835017704452,960.2449190268098,974.2799979350449,988.594917576033,1003.1947868704171,1018.0856028768984,1033.2732556270812,1048.763544072767,1064.5626566963283,1080.676681354019,1097.1116182532041,1113.8743287668385,1130.9710767101171,1148.4089858362202,1166.194580409591,1184.3347723174363,1202.8368389330237,1221.7079374951068,1240.9555910156864,1260.5872015592693,1280.610535515753,1301.0332365254478,1321.8633105664392,1343.1091087950133,1364.7793151254768,1386.8815267686346,1409.4251490928696,1432.4189337372795,1455.8715066647571,1479.792320530468,1504.1906685163021,1529.0761762772258,1554.458319220797,1580.3473805270069,1606.7534685612002,1633.6865411339181,1661.1573618021941,1689.1769862983283,1717.7562887653821,1746.9059854704997,1776.6380608847521,1806.9642865993333,1837.895782812969,1869.445416786632,1901.625349724052,1934.4480406876964,1967.9262355582457,2002.0734290023706,2036.90289083253,2072.428166204932,2108.663068525457,2145.6221439895808,2183.3196996717274,2221.770304933199,2260.9892552148576,2300.991599777337,2341.7935829961534,2383.4107032144384,2425.8596584121665,2469.1568717433893,2513.3194677545807,2558.3647719396477,2604.3098459300245,2651.1733975824764,2698.9738118900955,2747.729196838007,2797.459294115238,2848.183040564248,2899.920991998118,2952.69288672818,3006.519600777157,3061.4221498649536,3117.42217268217,3174.541911480719,3232.803257179946,3292.2292022997653,3352.8428479216054,3414.668360306704,3477.7299863433914,3542.0520755380116,3607.6600339002603,3674.5798079019246,3742.8374082428977,3812.459401127087,3883.4733644716543,3955.906909664803,4029.788647901924,4105.147682232629,4182.0131367419235,4260.415121594262,4340.384694504939,4421.953362287078,4505.15261619691,4590.015371098302,4676.574962313031,4764.865154418396,4854.920615295986,4946.776889847709,5040.46990970004,5136.03600419062,5233.512846130499,5332.938929443128,5434.353087757356,5537.794981256084,5643.30507895821,5750.925114380434,5860.697105895523,5972.66385118855,6086.8693846500755,6203.358939127264,6322.177506584943,6443.372246859317,6566.9905095854165,6693.080342517589,6821.69189817255,6952.874997023665,7086.681080631561,7223.16315054667,7362.374312984204,7504.369235844123,7649.2036265349,7796.934220063218,7947.619237493044,8101.317407294463,8258.0889297129,8417.995905956448,8581.10039905985,8747.466378184277,8917.159650813352,9090.245932060818,9266.793734666544,9446.871900227789,9630.551529276192,9817.90402268073,10009.003482265414,10203.924255422957,10402.743344188293,10605.538425450854,10812.3888263872,11023.37596008074,11238.582330006035,11458.092481274716,11681.992479080012,11910.37036533287,12143.315176984204,12380.918376699814,12623.27331052477,12870.475179724448,13122.620545517733,13379.808743338725,13642.140388479947,13909.718333628325,14182.647150702536,14461.034059128819,14744.988387260864,15034.62154571882,15330.047002273197,15631.380727978303,15938.740676877609,16252.247711801589,16572.024593142007,16898.196446966656,17230.89166950929,17570.24043086553,17916.37562938172,18269.433309681954,18629.55165182714,18996.87237877645,19371.538784656244,19753.6985921682,20143.500986642815,20541.099019972575,20946.649033110585,21360.30965992582,21782.243243519995,22212.614809794806,22651.593463022058,23099.35181455395,23556.06498972296,24021.912045301495,24497.075413076593,24981.74179727346,25476.101139899252,25980.34753865307,26494.678695900428,27019.2958785121,27554.40528880452,28100.216534198982,28656.944023575306,29224.80545368949,29804.024156968557,30394.826601114713,30997.444758372138,31612.115029528515,32239.078660770716,32878.58119555995,33530.87337382934,34196.211035238375,34874.855507775304,35567.0725690026,36273.13335687293,36993.315219938704,37727.90064510296,38477.177204102474,39241.439380074386],"type":"scatter"},{"mode":"lines","name":"scen_2a","x":[1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199,2200,2201,2202,2203,2204,2205,2206,2207,2208,2209,2210,2211,2212,2213,2214,2215,2216,2217,2218,2219,2220,2221,2222,2223,2224,2225,2226,2227,2228,2229,2230,2231,2232,2233,2234,2235,2236,2237,2238,2239,2240,2241,2242,2243,2244,2245,2246,2247,2248,2249,2250,2251,2252,2253,2254,2255,2256,2257,2258,2259,2260,2261,2262,2263,2264,2265,2266,2267,2268,2269,2270,2271,2272,2273,2274,2275,2276,2277,2278,2279,2280,2281,2282,2283,2284,2285,2286,2287,2288,2289,2290,2291,2292,2293,2294,2295,2296,2297,2298,2299,2300],"y":[292.7186061406113,293.19000875322297,293.71534869216913,294.24159501668385,294.77876166027073,295.3169629123733,295.9294082377316,296.5917081162377,297.2830887151168,297.9879492051385,298.7370569688515,299.52478519765316,300.3014006802289,301.11367931338077,301.9796885252033,302.90443766933487,303.8732814214301,304.89624619244097,305.9470733715012,307.0580579627134,308.2466786223629,309.538117984686,310.8733007633048,312.25877247568286,313.7275899468004,315.1687891884266,316.5703513541359,318.0748514921361,319.6271133212495,321.17876109854893,322.8356760811276,324.43566266313604,325.93228977339277,327.3913209637625,328.82425027924467,330.3286825110857,331.8856251306668,333.49726976260933,335.1512237147074,336.8780590419358,338.63146989391754,340.3852479251645,342.15296973791703,343.86511414601654,345.5519390057027,347.2705345975316,349.0311407629976,350.82703355298474,352.6500242678568,354.43482695922347,356.171250642912,357.9659173207718,359.8151484110023,361.6689488972862,363.69325143197625,365.86446911274385,368.1388602482964,370.49549920931986,372.90020682120996,375.3600852436941,377.9691514961428,380.6925192343427,383.51296119806386,386.4591524517736,389.3911899258603,392.21905928143855,395.29682869212576,398.4781554344635,401.67257964364387,404.9130711866278,408.1060116423316,411.2311506395353,414.18814550576917,416.99039554629593,419.6479776218558,422.1691827858183,424.5606731850503,426.82930370670357,428.9804160419203,431.01946130349114,432.9511162429466,434.7798421710185,436.5103874904347,438.1463725981207,439.692248621213,441.1513639993598,442.5274478528213,443.8236405372939,445.0434694723041,446.19035091794325,447.2666588554554,448.2756670302332,449.21960450146884,450.1016014618389,450.92374692252696,451.6890356815573,452.3994265672791,453.05684961500964,453.66366927946353,454.22171367339723,454.73324854250245,455.2000069220442,455.6236932744095,456.00645064147625,456.34942205570815,456.6542231105264,456.92290441063295,457.1565160509427,457.35658195926123,457.52412333809804,457.6606286318285,457.76755028805934,457.8458392175835,457.89691537169637,457.9216948177269,457.9210918195758,457.8964842781969,457.84874366583085,457.7787388034848,457.68733229575764,457.5753785180241,457.44419253802005,457.29411211458654,457.12597016585306,456.94058672426416,456.73877018847446,456.521318195175,456.28854825525553,456.04126572498745,455.78025902959314,455.50630288116685,455.21969032737275,454.92073156947146,454.6102171729501,454.2889164118199,453.9571123742718,453.61557263430853,453.2645761032718,452.9044147085064,452.5353883384308,452.15827172098653,451.7733449957199,451.3813676563621,450.98213739303907,450.57643046747484,450.1640547467374,449.7457925759422,449.3219253334323,448.8927397496883,448.4589956852183,448.02048726160695,447.5775146385281,447.130375393281,446.67936527548693,446.22477863688323,445.766908666158,445.3055775075207,444.84157379343327,444.3747100012596,443.9057679794187,443.434555141554,442.96090929017225,442.4856293527688,442.00853464401445,441.5299415612453,441.0501579834652,440.56901589155893,440.0873104444989,439.6043882967678,439.1210612132276,438.6371574820234,438.152529880157,437.6679883420743,437.18289041916256,436.6980562080055,436.2133205732217,435.72854161683904,435.2440636642706,434.7602154102695,434.27684484498417,433.7938197599915,433.3114919280347,432.8301959827345,432.3497847988331,431.87013028231684,431.3915877305733,430.914024829173,430.43779459313515,429.96276355789325,429.48928423458443,429.01722300886655,428.5464624214712,428.0768964461758,427.60889753911505,427.14281728449856,426.67852287003427,426.2158985639673,425.7548405132154,425.29572350872877,424.838431465653,424.38286128744824,423.9293891212156,423.47743053288167,423.02785167328136,422.5800552914828,422.1344290415112,421.6908672953279,421.2492757746154,420.8100382821906,420.3725771758229,419.93729472475326,419.50456673011735,419.07381077912834,418.645426308641,418.21931744275844,417.7953982563502,417.3735898993094,416.9542888005878,416.5373980471808,416.1223618181253,415.7100694915983,415.2999434124798,414.89191828406496,414.4864011417296,414.083303761154,413.6825477238855,413.2840614315636,412.88777825268085,412.4941053585752,412.1029554968214,411.7137816749235,411.3270114287377,410.9425721800248,410.5608680485836,410.1813404520095,409.8044095623106,409.4295280094017,409.05712417240215,408.68712699970416,408.3194724982526,407.9541016232744,407.5909589673601,407.2304619360493,406.87206273725366,406.51619068828995,406.16230644229785,405.8108456034233,405.46174374967285,405.114943051171,404.7703902437646,404.42803537430444,404.08783101534726,403.75020176587304,403.41460644388013,403.0814805222847,402.7502904388192,402.42147726687176,402.0949817768377,401.7702810822029,401.44782411707365,401.12755774488346,400.80943404291986,400.49340868727865,400.1799099544739,399.8684006152404,399.55885019291736,399.2516966520079,398.94640987296503,398.64296487242297,398.341804077913,398.04287116078456,397.7456469932991,397.4505847122854,397.1576355806154,396.86675612536595,396.5779064373875,396.2905791243312,396.0052361436565,395.7218357411136,395.44081024576633,395.16162728856744,394.88426165570263,394.608686735739,394.334875334837,394.0632701610525,393.7933466256238,393.52508565950683,393.2589357477753,392.99437662107533,392.7318626137948,392.4708775457853,392.21187875178146,391.9543523713435,391.69875762690305,391.4450522654771,391.19272944686065,390.94225337878385,390.6935855314127,390.44669199567215,390.2010719220629,389.957194046369,389.7150234460881,389.4745292291372,389.23568317464685,388.9984588998561,388.762831346544,388.5287764616862,388.2962709963093,388.06529237640586,387.8358186179086,387.6078282687195,387.38130036746173,387.1562144126708,386.9325503385984,386.71028849528994,386.4898796315067,386.27080739678553,386.0530609810993,385.8366270463483,385.6219608423564,385.40854939742354,385.19638457675717,384.9854552690748,384.77621865838705,384.5681635100347,384.3617532879752,384.15648089515076,383.9523426216679,383.7498008725498,383.5483482863269,383.3484513585238,383.1496054902151,382.9518091242311,382.7555265879909,382.56025228287814,382.3664543515889,382.1736297541708,381.9822484217282,381.7918086278353,381.6027813217576,381.4151356090893,381.2283756687255,381.0429764103722,380.85843970724727,380.67523925266494,380.492876359024,380.31182455155357,380.13205520809106,379.95307457364015,379.7753594780754,379.59888360630384],"type":"scatter"},{"mode":"lines","name":"scen_2b","x":[1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199,2200,2201,2202,2203,2204,2205,2206,2207,2208,2209,2210,2211,2212,2213,2214,2215,2216,2217,2218,2219,2220,2221,2222,2223,2224,2225,2226,2227,2228,2229,2230,2231,2232,2233,2234,2235,2236,2237,2238,2239,2240,2241,2242,2243,2244,2245,2246,2247,2248,2249,2250,2251,2252,2253,2254,2255,2256,2257,2258,2259,2260,2261,2262,2263,2264,2265,2266,2267,2268,2269,2270,2271,2272,2273,2274,2275,2276,2277,2278,2279,2280,2281,2282,2283,2284,2285,2286,2287,2288,2289,2290,2291,2292,2293,2294,2295,2296,2297,2298,2299,2300],"y":[292.7186061406113,293.19000875322297,293.71534869216913,294.24159501668385,294.77876166027073,295.3169629123733,295.9294082377316,296.5917081162377,297.2830887151168,297.9879492051385,298.7370569688515,299.52478519765316,300.3014006802289,301.11367931338077,301.9796885252033,302.90443766933487,303.8732814214301,304.89624619244097,305.9470733715012,307.0580579627134,308.2466786223629,309.538117984686,310.8733007633048,312.25877247568286,313.7275899468004,315.1687891884266,316.5703513541359,318.0748514921361,319.6271133212495,321.17876109854893,322.8356760811276,324.43566266313604,325.93228977339277,327.3913209637625,328.82425027924467,330.3286825110857,331.8856251306668,333.49726976260933,335.1512237147074,336.8780590419358,338.63146989391754,340.3852479251645,342.15296973791703,343.86511414601654,345.5519390057027,347.2705345975316,349.0311407629976,350.82703355298474,352.6500242678568,354.43482695922347,356.171250642912,357.9659173207718,359.8151484110023,361.6689488972862,363.69325143197625,365.86446911274385,368.1388602482964,370.49549920931986,372.90020682120996,375.3600852436941,377.9691514961428,380.6925192343427,383.51296119806386,386.4591524517736,389.3911899258603,392.21905928143855,395.29682869212576,398.4781554344635,401.67257964364387,404.9130711866278,408.1060116423316,411.2311506395353,414.03069550576913,416.5394722919448,418.78428466525355,420.78810946173485,422.57094416503446,424.1497027974829,425.54019980748774,426.75602325627705,427.8106763357363,428.7157623389036,429.4825469789793,430.1210436157,430.6410286896087,431.05157364618964,431.3606079240556,431.5759136731902,431.70511396728085,431.7547289092518,431.7311713128112,431.63979467214665,431.4863533049744,431.2760189096164,431.01340799032727,430.7030735880561,430.34902582917266,429.95475516921783,429.5241910307134,429.0607224670192,428.5672271397054,428.0465631036005,427.50108855019556,426.9336237707643,426.34647330306274,425.7414553033074,425.1208630933997,424.48648682615425,423.839642348517,423.18213223525527,422.5157369488733,421.84127573016605,421.16007233189026,420.47344284382103,419.78222439779563,419.0877419389113,418.39083269501714,417.6918763961419,416.99222680458126,416.29226538431766,415.59240454798464,414.8935473949631,414.19611381271557,413.500541576167,412.8072808245714,412.1167905461157,411.42953629066545,410.7459886371994,410.0661521281927,409.39053197871567,408.71915831737596,408.05208608597644,407.3898587208822,406.7325366077923,406.0801995718687,405.43341216295283,404.79178311388773,404.15543595113854,403.5249695235455,402.90002062285686,402.2807365440756,401.66726682669974,401.0592941216864,400.457002070981,399.86057025616486,399.2701770419144,398.6855312008353,398.10684028800983,397.533835923205,396.96674435087465,396.4053130658079,395.84978220484027,395.2999116928647,394.7559529651531,394.21767632802886,393.6848728247147,393.15781917844436,392.63630707720944,392.12014622774217,391.60963003918465,391.10456537578796,390.60477591242915,390.11009801786753,389.6208481270656,389.13685354115773,388.65795643990526,388.1840101839063,387.71534696035144,387.25180876706827,386.7932515538138,386.3395416188337,385.89055332713366,385.4461676357405,385.0067411134647,384.5716677825167,384.1413212855838,383.71557897987157,383.29432794434604,382.87746253773764,382.4648828492684,382.0569636945846,381.6531164630879,381.2532613075013,380.8577887523176,380.4665930837586,380.0791080015056,379.69574146248533,379.31640137624987,378.94100261146815,378.569465186415,378.20171312822856,377.8376737401344,377.4772771183197,377.1204558223087,376.7671446404057,376.4177504146529,376.0717144208125,375.7289849091427,375.38950895241794,375.0537034890746,374.7210184485539,374.3918797502872,374.06574395259827,373.7430421267461,373.4232350392281,373.10675735185106,372.7930730041453,372.48261953704065,372.1753335523566,371.8706876023971,371.56912581706797,371.270590105078,370.9745574962101,370.68147604565104,370.39129120583334,370.10395327456825,369.81894588299537,369.5367225460193,369.2572334289194,368.9804330376483,368.70580885623724,368.4338179903156,368.16441399247685,367.89755459038804,367.63320034918183,367.37131384924913,367.11185917717455,366.8543316071086,366.5991948809477,366.3464084231275,366.09593530802493,365.84774107041466,365.6017929758322,365.35805957027253,365.11651039967825,364.8771158327542,364.63937694678054,364.403762934768,364.17023840007914,363.9387713749128,363.70933216426295,363.4818926389889,363.25642580154334,363.0329055173212,362.81130634669324,362.5916034383288,362.3737724598974,362.1577895516418,361.9436312940069,361.7312746839715,361.5206971168268,361.31187637141534,361.10479059762054,360.89941830536424,360.69573835465235,360.4937299463863,360.2929026137608,360.09373369695425,359.8961956820275,359.7002642494061,359.50591713901224,359.31313345900384,359.1218932636875,358.93217729480165,358.74396682199097,358.5572435435418,358.3719895237577,358.1881871526486,358.0058191192351,357.8248683931926,357.645318211626,357.4671520690309,357.2903537092552,357.11490711873716,356.9407965205821,356.7680063692055,356.59652134537606,356.42632635155525,356.25740650746707,356.08974714585804,355.92333380841643,355.75815224183555,355.5941883940049,355.43142841031994,355.26985863010344,355.1094655831307,354.95023598625363,354.79215674011994,354.6352149259804,354.4793978025832,354.32469280314956,354.17108753242763,354.0185697638226,353.867127436598,353.71674865314634,353.56742167632683,353.41913492686655,353.2718769808226,353.1256365671045,352.9804025650522,352.83616400206955,352.69291005131026,352.5506300294145,352.4093133942949,352.26894974296937,352.12952880944005,351.9910404626157,351.8534747042771,351.71682166708416,351.58107161262103,351.4462149294821,351.31224213139353,351.1791438553717,351.0469108599169,350.91553402324,350.7850043415233,350.6553129272125,350.5264510073402,350.39840992187936,350.2711811221262,350.1447561691113,350.01912673203907,349.89428458675377,349.77022161423184,349.64692979909995,349.524401228178,349.40262808904663,349.2816026686378,349.16131735184956,349.0417646201825,348.9229370503987,348.8048273132018,348.6874281719395,348.57073248132394,348.45473318617564,348.3394233201838,348.2247960046885,348.11084444747996,347.997561941617,347.8849418642636,347.77297767554325,347.66166291740956,347.5509912125354,347.440956263218,347.33155185029966,347.22277183210576,347.11461014339767,347.007060794341,346.9001178694895,346.7937755267835,346.68802799656305],"type":"scatter"},{"mode":"lines","name":"scen_3a","x":[1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199,2200,2201,2202,2203,2204,2205,2206,2207,2208,2209,2210,2211,2212,2213,2214,2215,2216,2217,2218,2219,2220,2221,2222,2223,2224,2225,2226,2227,2228,2229,2230,2231,2232,2233,2234,2235,2236,2237,2238,2239,2240,2241,2242,2243,2244,2245,2246,2247,2248,2249,2250,2251,2252,2253,2254,2255,2256,2257,2258,2259,2260,2261,2262,2263,2264,2265,2266,2267,2268,2269,2270,2271,2272,2273,2274,2275,2276,2277,2278,2279,2280,2281,2282,2283,2284,2285,2286,2287,2288,2289,2290,2291,2292,2293,2294,2295,2296,2297,2298,2299,2300],"y":[292.7186061406113,293.19000875322297,293.71534869216913,294.24159501668385,294.77876166027073,295.3169629123733,295.9294082377316,296.5917081162377,297.2830887151168,297.9879492051385,298.7370569688515,299.52478519765316,300.3014006802289,301.11367931338077,301.9796885252033,302.90443766933487,303.8732814214301,304.89624619244097,305.9470733715012,307.0580579627134,308.2466786223629,309.538117984686,310.8733007633048,312.25877247568286,313.7275899468004,315.1687891884266,316.5703513541359,318.0748514921361,319.6271133212495,321.17876109854893,322.8356760811276,324.43566266313604,325.93228977339277,327.3913209637625,328.82425027924467,330.3286825110857,331.8856251306668,333.49726976260933,335.1512237147074,336.8780590419358,338.63146989391754,340.3852479251645,342.15296973791703,343.86511414601654,345.5519390057027,347.2705345975316,349.0311407629976,350.82703355298474,352.6500242678568,354.43482695922347,356.171250642912,357.9659173207718,359.8151484110023,361.6689488972862,363.69325143197625,365.86446911274385,368.1388602482964,370.49549920931986,372.90020682120996,375.3600852436941,377.9691514961428,380.6925192343427,383.51296119806386,386.4591524517736,389.3911899258603,392.21905928143855,395.29682869212576,398.4781554344635,401.67257964364387,404.9130711866278,408.1060116423316,411.2311506395353,414.4226755057691,417.67886161770264,420.999520527641,424.38507879115036,427.83585881913615,431.3533655221968,434.93825243215,438.59221215941176,442.31646944006803,446.1122686122416,449.6043902190616,452.82314682572655,455.7918045586962,458.52903443841353,461.0508805928671,463.37071229301233,465.5007670793869,467.45294458275583,469.2371015168828,470.8626803548278,472.3392444472123,473.67461486556255,474.87734198702657,475.9547756543227,476.91408241367503,477.7617775069531,478.50469693085705,479.1485582255465,479.6989649493465,480.1618699233537,480.5416660692203,480.84362781304753,481.07243078996834,481.2321871627158,481.326942111576,481.3606672423431,481.33678805498005,481.2591512793117,481.1310509291457,480.95526065699875,480.7349976892586,480.4734164865383,480.17267185071773,479.8353866644726,479.4636715581969,479.06009280608873,478.6266980388879,478.1655177478105,477.67856061254497,477.16734107530186,476.63384573965686,476.07955791076756,475.50595813817296,474.914518724477,474.3067005789544,473.68348148520846,473.04632270155,472.3961934161419,471.7345410420697,471.06184790737245,470.3795703826999,469.68866121398884,468.98960454062916,468.2833804128894,467.570957828528,466.85282653772464,466.1299656363391,465.40239908522824,464.67113399658945,463.9371523319761,463.2004779348049,462.4616458015592,461.7211918742867,460.9796527698252,460.237565528779,459.49499738239706,458.75251301869923,458.0106692104394,457.26954751308926,456.5297233310774,455.79129165857563,455.0543679550412,454.3195524809032,453.5869592080715,452.85671864200845,452.1289733606521,451.40387515883975,450.68205317545153,449.96317514220596,449.2478891432078,448.53587741709987,447.8277996284341,447.12334760089715,446.4227191666979,445.7261107457247,445.03371877360314,444.3452704885793,443.66099181719454,442.9811023782496,442.3058184084576,441.63488448299285,440.96854199133065,440.3065545216628,439.6496485213282,438.99710253679365,438.34919135182514,437.7061751663078,437.0678350476894,436.43444370916126,435.8057923276836,435.18169210898657,434.562439074873,433.948313278599,433.33911435765475,432.7346623991657,432.1347923179245,431.5398203205525,430.9500441591651,430.3648093339098,429.7844478541505,429.2088002313906,428.6381901787807,428.07245386166335,427.5114429889925,426.9550205745608,426.40305827127327,425.85590466476816,425.3134166710375,424.7759339480087,424.24283799154483,423.7144926348976,423.1907671290764,422.6715415331701,422.1567038961816,421.64614847770287,421.1402446025176,420.6388684205025,420.141907558716,419.64925786569296,419.1608213763797,418.67650502071706,418.19668978637844,417.72079267707437,417.2492089786626,416.7818364399008,416.3185813574017,415.85935620446094,415.40407814707345,414.95313810052465,414.5059626333675,414.06295621006774,413.62355536647345,413.1881722828389,412.7567197704407,412.32911785775593,411.9052917350398,411.48517047293365,411.06868621239545,410.65577364224526,410.2463696528052,409.8404130978995,409.43831462404654,409.0395190589656,408.64444796313785,408.25255400683506,407.86426467879045,407.4795073677405,407.0977460181194,406.7194166109002,406.3444532719017,405.97279555376576,405.60438681715965,405.23870322799564,404.8761906121902,404.5167914025328,404.1604524342263,403.8075936422522,403.45766977194387,403.11064252744313,402.7664721946951,402.4251185603126,402.08654145588065,401.7511710757213,401.41847067503835,401.0884093218522,400.7614238902608,400.43698272506344,400.1150589818551,399.7960929788786,399.4795560808953,399.1658941739152,398.85458261745094,398.54607031653285,398.2398350372898,397.9363277003304,397.6350278315311,397.33638793831574,397.0403590115673,396.74642745088846,396.4550507227437,396.1657135893522,395.8788729589666,395.5944836772207,395.3120356297815,395.0319895098216,394.75430311486747,394.47846875702805,394.204949217946,393.9337041602311,393.6646976080148,393.3974264625161,393.1323570767489,392.8694520439701,392.60867790795464,392.3500038188904,392.0929307113196,391.83792828185994,391.58496202328865,391.3340010849345,391.08501702069503,390.83751302386696,390.59196094033496,390.3483283250762,390.106586317017,389.8667083966384,389.62866962739935,389.39197619083586,389.15710258282155,388.9240187820107,388.6926981934435,388.46311644865875,388.2352506736674,388.0090790408843,387.78458049346665,387.5617345743912,387.34005131921646,387.1200086704475,386.90157977937537,386.6847410316432,386.4694708980713,386.25574923433646,386.0435568530357,385.8328752610901,385.62368649755916,385.4159730324759,385.2097177028042,385.0049036710205,384.80151439751853,384.59953362149366,384.3984753470629,384.1988213154688,384.0005483431577,383.80363637042285,383.6080673272722,383.4138244432245,383.22089182645425,383.0292542063901,382.83889677553674,382.6498050915549,382.4619650159656,382.2753626751367,382.089984434853,381.9058168831877,381.72284681846855,381.5410612403941,381.36044734311173,381.1809925095413,381.00268430650016,380.82551048036464,380.6494589530996,380.47451781855517,380.3006753389654,380.12791994161034,379.9562402156114,379.78562490884553,379.61606292496435,379.4475433205087,379.27958530211384,379.11267570661926],"type":"scatter"},{"mode":"lines","name":"scen_3b","x":[1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199,2200,2201,2202,2203,2204,2205,2206,2207,2208,2209,2210,2211,2212,2213,2214,2215,2216,2217,2218,2219,2220,2221,2222,2223,2224,2225,2226,2227,2228,2229,2230,2231,2232,2233,2234,2235,2236,2237,2238,2239,2240,2241,2242,2243,2244,2245,2246,2247,2248,2249,2250,2251,2252,2253,2254,2255,2256,2257,2258,2259,2260,2261,2262,2263,2264,2265,2266,2267,2268,2269,2270,2271,2272,2273,2274,2275,2276,2277,2278,2279,2280,2281,2282,2283,2284,2285,2286,2287,2288,2289,2290,2291,2292,2293,2294,2295,2296,2297,2298,2299,2300],"y":[292.7186061406113,293.19000875322297,293.71534869216913,294.24159501668385,294.77876166027073,295.3169629123733,295.9294082377316,296.5917081162377,297.2830887151168,297.9879492051385,298.7370569688515,299.52478519765316,300.3014006802289,301.11367931338077,301.9796885252033,302.90443766933487,303.8732814214301,304.89624619244097,305.9470733715012,307.0580579627134,308.2466786223629,309.538117984686,310.8733007633048,312.25877247568286,313.7275899468004,315.1687891884266,316.5703513541359,318.0748514921361,319.6271133212495,321.17876109854893,322.8356760811276,324.43566266313604,325.93228977339277,327.3913209637625,328.82425027924467,330.3286825110857,331.8856251306668,333.49726976260933,335.1512237147074,336.8780590419358,338.63146989391754,340.3852479251645,342.15296973791703,343.86511414601654,345.5519390057027,347.2705345975316,349.0311407629976,350.82703355298474,352.6500242678568,354.43482695922347,356.171250642912,357.9659173207718,359.8151484110023,361.6689488972862,363.69325143197625,365.86446911274385,368.1388602482964,370.49549920931986,372.90020682120996,375.3600852436941,377.9691514961428,380.6925192343427,383.51296119806386,386.4591524517736,389.3911899258603,392.21905928143855,395.29682869212576,398.4781554344635,401.67257964364387,404.9130711866278,408.1060116423316,411.2311506395353,414.4226755057691,417.67886161770264,420.999520527641,424.38507879115036,427.83585881913615,431.3533655221968,434.93825243215,438.59221215941176,442.31646944006803,446.1122686122416,448.5661602190616,450.01168638136323,450.6952994737926,450.8009422326564,450.4688429444557,449.80571003872166,448.89416697679934,447.7983949306785,446.5680470613548,445.24217651568006,443.85095494027144,442.41774389882227,440.9605843667107,439.4940999191708,438.0289762493234,436.5738688184803,435.13487218486574,433.7164691876853,432.32197233136804,430.9539625336203,429.6137825380892,428.3024884925713,427.0203411435547,425.7677522682718,424.5447691227728,423.3506033229668,422.1850698592705,421.0471174976946,419.93628073290404,418.85168802646706,417.79255102028924,416.75815081211385,415.7473585294643,414.7595960566424,413.7943257874269,412.85010950813967,411.9265418231709,411.0227680665341,410.1384557289064,409.272350971715,408.4242168328221,407.592884229327,406.7781929233422,405.97951428316395,405.19625591221006,404.4278578335783,403.67331960082777,402.9326354859303,402.2053199222273,401.49091392285453,400.7889825042887,400.09911269347015,399.4209119131873,398.75400661981047,398.09804111569673,397.45267648792407,396.8175896428684,396.1924724170428,395.5770307512864,394.9709839194997,394.3740638056691,393.7860142245195,393.20659028215186,392.63555777368776,392.07269261538755,391.5177803090227,390.9706154365109,390.43100118299685,389.8987488867055,389.3736776140086,388.8556137582523,388.34439066098116,387.83984825428143,387.3418327230349,386.8501961859553,386.3647963943355,385.8854964475015,385.4121645240252,384.94467362779915,384.4829013481357,384.02672963308993,383.57604457526213,383.13073620937035,382.69069832092754,382.2558282653954,381.8260267972225,381.40119790820717,380.98124867465987,380.56608911286645,380.155632042385,379.74979295673467,379.3484899010586,378.951643356369,378.5591761300038,378.17101325194506,377.78708187666973,377.40731119022166,377.0316323222129,376.6599782624755,376.2922837821065,375.92848535865636,375.56852110523215,375.2123307032949,374.85985533894535,374.51103764250394,374.1658216312004,373.82415265480137,373.48597734401125,373.15124356149346,372.81990035536575,372.49189791503414,372.167187529234,371.84572154615836,371.5274533355572,371.21233725270014,370.90032860409883,370.5913836148939,370.2854593978149,369.9825139236262,369.68250599297943,369.3853952095953,369.0911419547017,368.79970736266137,368.51105329772383,368.22514233184205,367.94193772349433,367.6614033974609,367.38350392550035,367.1082045078814,366.8354709557213,366.5652696740909,366.2975676458441,366.0323324161335,365.76953207757794,365.5091352560454,365.2511110970211,364.99542925252985,364.7420598685832,364.49097357312587,364.24214146445485,363.9955351000867,363.75112648605176,363.5088880665924,363.2687927142452,363.0308137202885,362.79492478553664,362.56110001146374,362.32931389164094,362.09954130347177,361.8717575002115,361.6459381032561,361.4220590946884,361.200096810069,360.9800279314609,360.76182948067554,360.54547881273186,360.3309536095171,360.1182318736405,359.90729192247113,359.69811238235224,359.49067218298285,359.2849505519607,359.08092700947844,358.8785813631668,358.67789370307855,358.47884439680746,358.2814140847353,358.08558367540354,357.8913343410035,357.6986475129793,357.5075048777413,357.3178883724836,357.1297801811025,356.9431627302118,356.75801868525116,356.57433094668414,356.3920826462829,356.2112571434949,356.0318380218908,355.8538090856895,355.6771543563565,355.5018580692759,355.32790467049034,355.1552788135087,354.98396535617866,354.8139493576218,354.6452160752295,354.4777509617174,354.311539662237,354.14656801154223,353.98282203120965,353.8202879269104,353.6589520857322,353.4988010735513,353.33982163245014,353.1820006781827,353.02532529768433,352.8697827466246,352.71536044700315,352.5620459847869,352.40982710758726,352.258691722377,352.10862789324466,351.9596238391867,351.8116679319366,351.66474869382796,351.51885479569387,351.3739750547991,351.2300984328058,351.08721403377103,350.945311102177,350.80437902099084,350.6644073097553,350.5253856227091,350.3873037469364,350.25015160054346,350.1139192308648,349.9785968126951,349.8441746465484,349.71064315694395,349.5779928907162,349.4462145153513,349.31529881734775,349.1852367006011,349.0560191848125,348.92763740392036,348.80008260455554,348.67334614451795,348.54741949127595,348.4222942204872,348.29796201454076,348.17441466112,348.05164405178647,347.92964218058324,347.8084011426588,347.68791313291024,347.5681704446453,347.4491654682639,347.3308906899577,347.2133386904283,347.09650214362324,346.9803738154897,346.8649465627455,346.7502133316677,346.6361671568974,346.52280116026145,346.4101085496109,346.2980826176746,346.1867167409296,346.0760043784867,345.965939070991,345.85651443953856,345.7477241846072,345.63956208500184,345.53202199681505,345.42509785240134,345.3187836593654,345.2130734995646,345.1079615281247,345.00344197246915,344.89950913136187,344.7961573739626,344.69338113889535,344.59117493332957,344.4895333320739,344.3884509766818,344.2879225745698,344.18794289814736,344.0885067839587],"type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"height":500,"title":{"text":"CO2 Concentration"},"yaxis":{"range":[0,900]}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('a8c00da6-dd74-4389-a454-e9542c1819be');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_scens</span><span class="p">(</span><span class="s2">&quot;Emission&quot;</span><span class="p">,</span> <span class="s2">&quot;Emissions&quot;</span><span class="p">,</span> <span class="n">scens</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>                            <div id="7056f9ca-7298-4839-ac23-5d10b808434c" class="plotly-graph-div" style="height:500px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("7056f9ca-7298-4839-ac23-5d10b808434c")) {                    Plotly.newPlot(                        "7056f9ca-7298-4839-ac23-5d10b808434c",                        [{"mode":"lines","name":"scen_1a","x":[1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199,2200,2201,2202,2203,2204,2205,2206,2207,2208,2209,2210,2211,2212,2213,2214,2215,2216,2217,2218,2219,2220,2221,2222,2223,2224,2225,2226,2227,2228,2229,2230,2231,2232,2233,2234,2235,2236,2237,2238,2239,2240,2241,2242,2243,2244,2245,2246,2247,2248,2249,2250,2251,2252,2253,2254,2255,2256,2257,2258,2259,2260,2261,2262,2263,2264,2265,2266,2267,2268,2269,2270,2271,2272,2273,2274,2275,2276,2277,2278,2279,2280,2281,2282,2283,2284,2285,2286,2287,2288,2289,2290,2291,2292,2293,2294,2295,2296,2297,2298,2299,2300],"y":[1630,1767,1795,1841,1865,2043,2177,2270,2330,2454,2569,2580,2686,2833,2995,3130,3288,3393,3566,3780,4053,4208,4376,4615,4623,4596,4864,5026,5087,5369,5316,5152,5113,5095,5283,5441,5609,5755,5968,6088,6151,6239,6178,6172,6284,6422,6550,6663,6638,6584,6750,6916,6981,7397,7782,8086,8350,8543,8749,9155,9499,9812,10189,10275,10158,10775,11110,11257,11467,11477,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432,11432],"type":"scatter"},{"mode":"lines","name":"scen_1b","x":[1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199,2200,2201,2202,2203,2204,2205,2206,2207,2208,2209,2210,2211,2212,2213,2214,2215,2216,2217,2218,2219,2220,2221,2222,2223,2224,2225,2226,2227,2228,2229,2230,2231,2232,2233,2234,2235,2236,2237,2238,2239,2240,2241,2242,2243,2244,2245,2246,2247,2248,2249,2250,2251,2252,2253,2254,2255,2256,2257,2258,2259,2260,2261,2262,2263,2264,2265,2266,2267,2268,2269,2270,2271,2272,2273,2274,2275,2276,2277,2278,2279,2280,2281,2282,2283,2284,2285,2286,2287,2288,2289,2290,2291,2292,2293,2294,2295,2296,2297,2298,2299,2300],"y":[1630,1767,1795,1841,1865,2043,2177,2270,2330,2454,2569,2580,2686,2833,2995,3130,3288,3393,3566,3780,4053,4208,4376,4615,4623,4596,4864,5026,5087,5369,5316,5152,5113,5095,5283,5441,5609,5755,5968,6088,6151,6239,6178,6172,6284,6422,6550,6663,6638,6584,6750,6916,6981,7397,7782,8086,8350,8543,8749,9155,9499,9812,10189,10275,10158,10775,11110,11257,11467,11477,11432,11661,11894,12132,12375,12622,12875,13132,13395,13663,13936,14215,14499,14789,15085,15386,15694,16008,16328,16655,16988,17327,17674,18027,18388,18756,19131,19514,19904,20302,20708,21122,21545,21975,22415,22863,23320,23787,24263,24748,25243,25748,26263,26788,27324,27870,28428,28996,29576,30168,30771,31386,32014,32654,33307,33974,34653,35346,36053,36774,37510,38260,39025,39805,40601,41414,42242,43087,43948,44827,45724,46638,47571,48523,49493,50483,51493,52522,53573,54644,55737,56852,57989,59149,60332,61538,62769,64024,65305,66611,67943,69302,70688,72102,73544,75015,76515,78045,79606,81199,82822,84479,86169,87892,89650,91443,93272,95137,97040,98981,100960,102979,105039,107140,109282,111468,113698,115971,118291,120657,123070,125531,128042,130603,133215,135879,138597,141369,144196,147080,150021,153022,156082,159204,162388,165636,168949,172327,175774,179290,182875,186533,190263,194069,197950,201909,205947,210066,214268,218553,222924,227382,231930,236569,241300,246126,251049,256070,261191,266415,271743,277178,282722,288376,294143,300026,306027,312147,318390,324758,331253,337878,344636,351529,358559,365730,373045,380506,388116,395878,403796,411872,420109,428511,437082,445823,454740,463835,473111,482574,492225,502069,512111,522353,532800,543456,554325,565412,576720,588254,600020,612020,624260,636746,649480,662470,675719,689234,703018,717079,731420,746049,760970,776189,791713,807547,823698,840172,856976,874115,891597,909429,927618,946170,965094,984396,1004084,1024165,1044648,1065541,1086852,1108589,1130761,1153376,1176444,1199973,1223972,1248452,1273421,1298889,1324867,1351364,1378392,1405959,1434079,1462760,1492015,1521856,1552293,1583339,1615005,1647305,1680252,1713857,1748134,1783096,1818758,1855133,1892236,1930081,1968682,2008056,2048217,2089182,2130965,2173585,2217056,2261397,2306625,2352758,2399813,2447809,2496765,2546701,2597635,2649587,2702579,2756631,2811763,2867999,2925359],"type":"scatter"},{"mode":"lines","name":"scen_2a","x":[1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199,2200,2201,2202,2203,2204,2205,2206,2207,2208,2209,2210,2211,2212,2213,2214,2215,2216,2217,2218,2219,2220,2221,2222,2223,2224,2225,2226,2227,2228,2229,2230,2231,2232,2233,2234,2235,2236,2237,2238,2239,2240,2241,2242,2243,2244,2245,2246,2247,2248,2249,2250,2251,2252,2253,2254,2255,2256,2257,2258,2259,2260,2261,2262,2263,2264,2265,2266,2267,2268,2269,2270,2271,2272,2273,2274,2275,2276,2277,2278,2279,2280,2281,2282,2283,2284,2285,2286,2287,2288,2289,2290,2291,2292,2293,2294,2295,2296,2297,2298,2299,2300],"y":[1630,1767,1795,1841,1865,2043,2177,2270,2330,2454,2569,2580,2686,2833,2995,3130,3288,3393,3566,3780,4053,4208,4376,4615,4623,4596,4864,5026,5087,5369,5316,5152,5113,5095,5283,5441,5609,5755,5968,6088,6151,6239,6178,6172,6284,6422,6550,6663,6638,6584,6750,6916,6981,7397,7782,8086,8350,8543,8749,9155,9499,9812,10189,10275,10158,10775,11110,11257,11467,11477,11432,11162,10899,10642,10391,10145,9906,9672,9444,9221,9003,8791,8583,8381,8183,7990,7801,7617,7438,7262,7091,6923,6760,6600,6445,6293,6144,5999,5857,5719,5584,5452,5324,5198,5075,4956,4839,4725,4613,4504,4398,4294,4193,4094,3997,3903,3811,3721,3633,3547,3464,3382,3302,3224,3148,3074,3001,2930,2861,2794,2728,2663,2600,2539,2479,2421,2364,2308,2253,2200,2148,2098,2048,2000,1952,1906,1861,1817,1775,1733,1692,1652,1613,1575,1538,1501,1466,1431,1398,1365,1332,1301,1270,1240,1211,1182,1155,1127,1101,1075,1049,1025,1000,977,954,931,909,888,867,846,826,807,788,769,751,733,716,699,683,667,651,635,620,606,592,578,564,551,538,525,513,500,489,477,466,455,444,434,423,413,404,394,385,376,367,358,350,342,333,326,318,310,303,296,289,282,275,269,263,256,250,244,239,233,228,222,217,212,207,202,197,193,188,184,179,175,171,167,163,159,155,152,148,145,141,138,135,131,128,125,122,119,117,114,111,109,106,103,101,99,96,94,92,90,88,85,83,81,80,78,76,74,72,71,69,67,66,64,63,61,60,58,57,56,54,53,52,51,49,48,47,46,45,44,43,42,41,40,39,38,37,36,35,34,34,33,32,31,31,30,29,28,28,27,27,26,25,25,24,24,23,22,22,21,21,20,20,19,19,19,18,18,17,17,16,16,16,15,15,15,14],"type":"scatter"},{"mode":"lines","name":"scen_2b","x":[1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199,2200,2201,2202,2203,2204,2205,2206,2207,2208,2209,2210,2211,2212,2213,2214,2215,2216,2217,2218,2219,2220,2221,2222,2223,2224,2225,2226,2227,2228,2229,2230,2231,2232,2233,2234,2235,2236,2237,2238,2239,2240,2241,2242,2243,2244,2245,2246,2247,2248,2249,2250,2251,2252,2253,2254,2255,2256,2257,2258,2259,2260,2261,2262,2263,2264,2265,2266,2267,2268,2269,2270,2271,2272,2273,2274,2275,2276,2277,2278,2279,2280,2281,2282,2283,2284,2285,2286,2287,2288,2289,2290,2291,2292,2293,2294,2295,2296,2297,2298,2299,2300],"y":[1630,1767,1795,1841,1865,2043,2177,2270,2330,2454,2569,2580,2686,2833,2995,3130,3288,3393,3566,3780,4053,4208,4376,4615,4623,4596,4864,5026,5087,5369,5316,5152,5113,5095,5283,5441,5609,5755,5968,6088,6151,6239,6178,6172,6284,6422,6550,6663,6638,6584,6750,6916,6981,7397,7782,8086,8350,8543,8749,9155,9499,9812,10189,10275,10158,10775,11110,11257,11467,11477,11432,10827,10255,9712,9198,8712,8251,7815,7401,7010,6639,6288,5955,5640,5342,5059,4791,4538,4298,4071,3855,3651,3458,3275,3102,2938,2782,2635,2496,2364,2239,2120,2008,1902,1801,1706,1616,1530,1449,1373,1300,1231,1166,1104,1046,991,938,889,842,797,755,715,677,641,607,575,545,516,489,463,438,415,393,372,353,334,316,300,284,269,255,241,228,216,205,194,184,174,165,156,148,140,133,126,119,113,107,101,96,91,86,81,77,73,69,65,62,59,56,53,50,47,45,42,40,38,36,34,32,31,29,27,26,25,23,22,21,20,19,18,17,16,15,14,14,13,12,11,11,10,10,9,9,8,8,7,7,7,6,6,6,5,5,5,5,4,4,4,4,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"type":"scatter"},{"mode":"lines","name":"scen_3a","x":[1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199,2200,2201,2202,2203,2204,2205,2206,2207,2208,2209,2210,2211,2212,2213,2214,2215,2216,2217,2218,2219,2220,2221,2222,2223,2224,2225,2226,2227,2228,2229,2230,2231,2232,2233,2234,2235,2236,2237,2238,2239,2240,2241,2242,2243,2244,2245,2246,2247,2248,2249,2250,2251,2252,2253,2254,2255,2256,2257,2258,2259,2260,2261,2262,2263,2264,2265,2266,2267,2268,2269,2270,2271,2272,2273,2274,2275,2276,2277,2278,2279,2280,2281,2282,2283,2284,2285,2286,2287,2288,2289,2290,2291,2292,2293,2294,2295,2296,2297,2298,2299,2300],"y":[1630,1767,1795,1841,1865,2043,2177,2270,2330,2454,2569,2580,2686,2833,2995,3130,3288,3393,3566,3780,4053,4208,4376,4615,4623,4596,4864,5026,5087,5369,5316,5152,5113,5095,5283,5441,5609,5755,5968,6088,6151,6239,6178,6172,6284,6422,6550,6663,6638,6584,6750,6916,6981,7397,7782,8086,8350,8543,8749,9155,9499,9812,10189,10275,10158,10775,11110,11257,11467,11477,11432,11661,11894,12132,12375,12622,12875,13132,13395,13663,13936,13413,12910,12426,11960,11512,11080,10664,10265,9880,9509,9153,8809,8479,8161,7855,7560,7277,7004,6741,6489,6245,6011,5786,5569,5360,5159,4965,4779,4600,4427,4261,4102,3948,3800,3657,3520,3388,3261,3139,3021,2908,2799,2694,2593,2496,2402,2312,2225,2142,2061,1984,1910,1838,1769,1703,1639,1578,1518,1461,1407,1354,1303,1254,1207,1162,1118,1076,1036,997,960,924,889,856,824,793,763,734,707,680,655,630,607,584,562,541,521,501,482,464,447,430,414,398,384,369,355,342,329,317,305,293,282,272,262,252,242,233,225,216,208,200,193,186,179,172,165,159,153,148,142,137,132,127,122,117,113,109,105,101,97,93,90,86,83,80,77,74,71,69,66,64,61,59,57,55,53,51,49,47,45,43,42,40,39,37,36,35,33,32,31,30,29,27,26,25,24,24,23,22,21,20,19,19,18,17,17,16,15,15,14,14,13,13,12,12,11,11,11,10,10,9,9,9,8,8,8,7,7,7,7,6,6,6,6,6,5,5,5,5,5,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0],"type":"scatter"},{"mode":"lines","name":"scen_3b","x":[1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127,2128,2129,2130,2131,2132,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,2148,2149,2150,2151,2152,2153,2154,2155,2156,2157,2158,2159,2160,2161,2162,2163,2164,2165,2166,2167,2168,2169,2170,2171,2172,2173,2174,2175,2176,2177,2178,2179,2180,2181,2182,2183,2184,2185,2186,2187,2188,2189,2190,2191,2192,2193,2194,2195,2196,2197,2198,2199,2200,2201,2202,2203,2204,2205,2206,2207,2208,2209,2210,2211,2212,2213,2214,2215,2216,2217,2218,2219,2220,2221,2222,2223,2224,2225,2226,2227,2228,2229,2230,2231,2232,2233,2234,2235,2236,2237,2238,2239,2240,2241,2242,2243,2244,2245,2246,2247,2248,2249,2250,2251,2252,2253,2254,2255,2256,2257,2258,2259,2260,2261,2262,2263,2264,2265,2266,2267,2268,2269,2270,2271,2272,2273,2274,2275,2276,2277,2278,2279,2280,2281,2282,2283,2284,2285,2286,2287,2288,2289,2290,2291,2292,2293,2294,2295,2296,2297,2298,2299,2300],"y":[1630,1767,1795,1841,1865,2043,2177,2270,2330,2454,2569,2580,2686,2833,2995,3130,3288,3393,3566,3780,4053,4208,4376,4615,4623,4596,4864,5026,5087,5369,5316,5152,5113,5095,5283,5441,5609,5755,5968,6088,6151,6239,6178,6172,6284,6422,6550,6663,6638,6584,6750,6916,6981,7397,7782,8086,8350,8543,8749,9155,9499,9812,10189,10275,10158,10775,11110,11257,11467,11477,11432,11661,11894,12132,12375,12622,12875,13132,13395,13663,13936,11204,9008,7243,5823,4682,3764,3026,2433,1956,1573,1265,1017,817,657,528,425,342,275,221,178,143,115,92,74,60,48,39,31,25,20,16,13,10,8,7,5,4,3,3,2,2,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"height":500,"title":{"text":"Emissions"},"yaxis":{"range":[0,20000]}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('7056f9ca-7298-4839-ac23-5d10b808434c');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_scens</span><span class="p">(</span><span class="s2">&quot;TempAtmos&quot;</span><span class="p">,</span> <span class="s2">&quot;Temperature&quot;</span><span class="p">,</span> <span class="n">scens</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">File ~/Documents/Book/.conda/lib/python3.11/site-packages/pandas/core/indexes/base.py:3791,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3790</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3791</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3792</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="nn">File index.pyx:152,</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">File index.pyx:181,</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">File pandas/_libs/hashtable_class_helper.pxi:7080,</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="nn">File pandas/_libs/hashtable_class_helper.pxi:7088,</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="ne">KeyError</span>: &#39;Temperature&#39;
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">480</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">draw_scens</span><span class="p">(</span><span class="s2">&quot;Temperature&quot;</span><span class="p">,</span> <span class="n">scens</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="nn">Cell In[459], line 8,</span> in <span class="ni">draw_scens</span><span class="nt">(x, scens, names, max)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scens</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">8</span>     <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">Year</span><span class="p">[</span><span class="mi">200</span><span class="p">:],</span> <span class="n">y</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">200</span><span class="p">:],</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>                         <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>                         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">])</span>
+
+<span class="nn">File ~/Documents/Book/.conda/lib/python3.11/site-packages/pandas/core/frame.py:3893,</span> in <span class="ni">DataFrame.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3891</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">nlevels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3892</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_multilevel</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3893</span> <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3894</span> <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">indexer</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3895</span>     <span class="n">indexer</span> <span class="o">=</span> <span class="p">[</span><span class="n">indexer</span><span class="p">]</span>
+
+<span class="nn">File ~/Documents/Book/.conda/lib/python3.11/site-packages/pandas/core/indexes/base.py:3798,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3793</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">casted_key</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3794</span>         <span class="nb">isinstance</span><span class="p">(</span><span class="n">casted_key</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3795</span>         <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3796</span>     <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3797</span>         <span class="k">raise</span> <span class="n">InvalidIndexError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3798</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">   </span><span class="mi">3799</span> <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3800</span>     <span class="c1"># If we have a listlike key, _check_indexing_error will raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">3801</span>     <span class="c1">#  InvalidIndexError. Otherwise we fall through and re-raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">3802</span>     <span class="c1">#  the TypeError.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3803</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_indexing_error</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="ne">KeyError</span>: &#39;Temperature&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="economics-module">
+<h2>Economics Module<a class="headerlink" href="#economics-module" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_econ</span> <span class="o">=</span> <span class="s2">&quot;/Users/danypineault/Documents/Book/book/data/econData.csv&quot;</span>
+<span class="n">df_econ</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_econ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_econ</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>PopRich</th>
+      <th>PopMiddle</th>
+      <th>PopPoor</th>
+      <th>PopGRich</th>
+      <th>PopGMiddle</th>
+      <th>PopGPoor</th>
+      <th>GDPRich</th>
+      <th>GDPMiddle</th>
+      <th>GDPPoor</th>
+      <th>EnergyRich</th>
+      <th>EnergyMiddle</th>
+      <th>EnergyPoor</th>
+      <th>CO2Rich</th>
+      <th>CO2Middle</th>
+      <th>CO2Poor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.95</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1960.0</td>
+      <td>755.0</td>
+      <td>1194.0</td>
+      <td>1067.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7556.0</td>
+      <td>833.0</td>
+      <td>262.0</td>
+      <td>1823.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5170.0</td>
+      <td>2633.0</td>
+      <td>321.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1961.0</td>
+      <td>765.0</td>
+      <td>1200.0</td>
+      <td>1092.0</td>
+      <td>1.40%</td>
+      <td>0.45%</td>
+      <td>2.38%</td>
+      <td>7939.0</td>
+      <td>859.0</td>
+      <td>272.0</td>
+      <td>1870.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5281.0</td>
+      <td>2464.0</td>
+      <td>345.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1962.0</td>
+      <td>774.0</td>
+      <td>1218.0</td>
+      <td>1119.0</td>
+      <td>1.20%</td>
+      <td>1.49%</td>
+      <td>2.41%</td>
+      <td>8405.0</td>
+      <td>889.0</td>
+      <td>283.0</td>
+      <td>1971.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5523.0</td>
+      <td>2463.0</td>
+      <td>364.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1963.0</td>
+      <td>783.0</td>
+      <td>1247.0</td>
+      <td>1146.0</td>
+      <td>1.15%</td>
+      <td>2.40%</td>
+      <td>2.44%</td>
+      <td>8839.0</td>
+      <td>906.0</td>
+      <td>301.0</td>
+      <td>2097.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5836.0</td>
+      <td>2591.0</td>
+      <td>390.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>2016.0</td>
+      <td>1125.0</td>
+      <td>2729.0</td>
+      <td>3775.0</td>
+      <td>0.47%</td>
+      <td>1.19%</td>
+      <td>2.66%</td>
+      <td>39054.0</td>
+      <td>11921.0</td>
+      <td>4050.0</td>
+      <td>4986.0</td>
+      <td>6511.0</td>
+      <td>2077.0</td>
+      <td>11853.0</td>
+      <td>21558.0</td>
+      <td>4657.0</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>2017.0</td>
+      <td>1131.0</td>
+      <td>2762.0</td>
+      <td>3873.0</td>
+      <td>0.59%</td>
+      <td>1.22%</td>
+      <td>2.60%</td>
+      <td>39594.0</td>
+      <td>12569.0</td>
+      <td>3918.0</td>
+      <td>4973.0</td>
+      <td>6742.0</td>
+      <td>2111.0</td>
+      <td>11719.0</td>
+      <td>22218.0</td>
+      <td>4413.0</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>2018.0</td>
+      <td>1138.0</td>
+      <td>2795.0</td>
+      <td>3973.0</td>
+      <td>0.59%</td>
+      <td>1.21%</td>
+      <td>2.57%</td>
+      <td>40190.0</td>
+      <td>13259.0</td>
+      <td>4051.0</td>
+      <td>4990.0</td>
+      <td>6886.0</td>
+      <td>2354.0</td>
+      <td>11810.0</td>
+      <td>22818.0</td>
+      <td>3939.0</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>2019.0</td>
+      <td>1145.0</td>
+      <td>2829.0</td>
+      <td>4075.0</td>
+      <td>0.60%</td>
+      <td>1.20%</td>
+      <td>2.57%</td>
+      <td>41056.0</td>
+      <td>13913.0</td>
+      <td>4228.0</td>
+      <td>4982.0</td>
+      <td>7096.0</td>
+      <td>2258.0</td>
+      <td>11625.0</td>
+      <td>23072.0</td>
+      <td>4098.0</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>2020.0</td>
+      <td>1152.0</td>
+      <td>2862.0</td>
+      <td>4180.0</td>
+      <td>0.58%</td>
+      <td>1.17%</td>
+      <td>2.58%</td>
+      <td>42083.0</td>
+      <td>14534.0</td>
+      <td>4207.0</td>
+      <td>4864.0</td>
+      <td>7096.0</td>
+      <td>2258.0</td>
+      <td>11584.0</td>
+      <td>22994.0</td>
+      <td>3709.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>62 rows × 16 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/iam"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carbon-cycle-module">Carbon cycle module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-module">Climate module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-energy-in-the-atmosphere">Extra energy in the atmosphere</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-term-temperature-effect">Long term temperature effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-formulation">Python formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#emissions">Emissions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Carbon cycle module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Climate module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#economics-module">Economics Module</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dany Pineault
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

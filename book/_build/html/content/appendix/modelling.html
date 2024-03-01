@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modelling &#8212; Modelling the World</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/appendix/modelling';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Appendix" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Modelling the World</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../history/intro.html">Evolution of the different Paradigms</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history/env-econo.html">Environmental Economics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history/ecolo-econo.html">Ecological Economics</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../economics/growthModels/Intro.html">Growth Models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../economics/growthModels/models/SolowModel.html">The Solow-Swan Growth Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Appendix</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Modelling</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/appendix/modelling.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/appendix/modelling.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-paradigms">Modelling Paradigms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mathematical-modeling-framework">The Mathematical Modeling Framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-variables">State variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-information-i-t">Other information <span class="math notranslate nohighlight">\(I_t\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-belief-state-b-t">The belief state <span class="math notranslate nohighlight">\(B_t\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-variables">Decision variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exogenous-information">Exogenous information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-function">Transition function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective-functions">Objective functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#final-reward">Final reward</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-reward">Cumulative reward</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Modelling Paradigms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gekko">GEKKO</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelling">
+<h1>Modelling<a class="headerlink" href="#modelling" title="Link to this heading">#</a></h1>
+<p>Economic growth and development are dynamic processes and thus necessitate dynamic models. As we progress toward more complex models as Integrated Assessment Models, the dynamics will become nonlinear and analytical solution will not be possible.</p>
+<p>In this book we will focus on Non-Linear Continuous Model that can be represented by ordinary differential equations “ODE”, and solved numerically. As such, when possible we will use Gekko.</p>
+<section id="modelling-paradigms">
+<h2>Modelling Paradigms<a class="headerlink" href="#modelling-paradigms" title="Link to this heading">#</a></h2>
+<p>Four different kinds of modelling will be discussed this week. Since these techniques are based on different assumptions, some people actually prefer to call them paradigms rather than techniques</p>
+</section>
+<section id="the-mathematical-modeling-framework">
+<h2>The Mathematical Modeling Framework<a class="headerlink" href="#the-mathematical-modeling-framework" title="Link to this heading">#</a></h2>
+<p>There are five basic elements to a sequential decision problem.</p>
+<section id="state-variables">
+<h3>State variables<a class="headerlink" href="#state-variables" title="Link to this heading">#</a></h3>
+<p>The state St of the system at time t is a function of history which, com- bined with a policy and exogenous information, contains all the information that is necessary and sufficient to model our system from time t onward. This means it has to capture the information needed to compute costs/contributions, constraints on deci- sions, and the evolution of this information over time in the transition function (these are the equations that describe how the state variables evolve), all defined below. In fact, it is often best to write out the objective function (with costs/contributions), the constraints for the decisions, and the transition function, and then return to define the state variables.
+We distinguish between the initial state <span class="math notranslate nohighlight">\(S_0\)</span> and the dynamic state <span class="math notranslate nohighlight">\(S_t\)</span> for <span class="math notranslate nohighlight">\(t &gt; 0\)</span>. The initial state contains all deterministic parameters, initial values of dynamic parameters, and, in some settings, initial probabilistic beliefs about unknown parameters. The dynamic state St contains all information that is evolving over time. Note that the initial state S0 may include some deterministic parameters that do not change over time, which means these would be excluded from the dynamic state variable.
+There are three types of information in St:
+The physical state <span class="math notranslate nohighlight">\(R_t\)</span>
+which in most (but not all) applications is the state variable that is being controlled. Rt may be a scalar, or a vector with element Rti where i could be a type of resource (e.g. a blood type) or the amount of inventory at location i.</p>
+<section id="other-information-i-t">
+<h4>Other information <span class="math notranslate nohighlight">\(I_t\)</span><a class="headerlink" href="#other-information-i-t" title="Link to this heading">#</a></h4>
+<p>which is any information that is known deterministically not included in Rt. The information state often evolves exogenously, but may be controlled or at least influenced by decisions (e.g. selling a large number of shares may depress prices).</p>
+</section>
+<section id="the-belief-state-b-t">
+<h4>The belief state <span class="math notranslate nohighlight">\(B_t\)</span><a class="headerlink" href="#the-belief-state-b-t" title="Link to this heading">#</a></h4>
+<p>which contains information about aprobability distribution describing one or more unknown parameters. Thus, Bt could capture the mean and variance of a normal distribution. Alternatively, it could be a vector of probabilities that evolve over time.</p>
+<p>We note that the distinction of “physical state” Rt versus “other information” It is somewhat imprecise, but there are many problems that involve the management of physical (and financial) resources where the state of the physical resources (in- ventories, location of a vehicle, location and speed of a robot) is a natural “state variable” (in fact, a common error is to assume that the state of physical resources is the only state variables). By contrast, the “other information” It is literally any other information that does not seem to belong in Rt. For example, Rt might be the amount of money in a cash account, while It might be the current state of the stock and bond markets.</p>
+<p>The state St is sometimes referred to as the pre-decision state because it is the state just before we make a decision. We sometimes find it useful to define a post-decision state Stx which is the state immediately after we make a decision, but before any new information has arrived, which means that Stx is a deterministic function of St and xt. Forexample,inabasicinventoryproblemwhereRt+1 =max{0,Rt+xt−Dˆt+1}, the post-decision state would be Stx = Rtx = Rt + xt, which is the state after we have implemented our decision but before any new information (which would be the demands Dˆt+1) arrive.</p>
+<p>Post-decision states are often simpler, because there may be information in St that is only needed to make the decision xt (we will see this in chapter 5). However, there are other situations where we place an order xtt′ at time t to be implemented at time t′ &gt; t. In the case of these lagged decisions, we would have to keep these decisions in the state variable at time t + 1, which means the post-decision state is even higher-dimensional than the pre-decision state.</p>
+</section>
+</section>
+<section id="decision-variables">
+<h3>Decision variables<a class="headerlink" href="#decision-variables" title="Link to this heading">#</a></h3>
+<p>Decisions are typically represented as at for discrete actions, ut for continuous (typically vector-valued) controls, and xt for general continuous or discrete vectors. We use xt as our default, but there are situations where at is useful when actions are discrete.</p>
+<p>Decisions may be binary (e.g. for modeling when to sell an asset, or for A/B testing of different web designs), discrete (e.g. an element of a finite set), continuous (scalar or vector), integer vectors, and categorical (e.g. the attributes of a patient). We note that entire fields of research are sometimes distinguished by the nature of the decision variable.</p>
+<p>We assume that decisions are made with a policy, which we might denote Xπ(St) (if we use xt as our decision), Aπ(St) (if we use at), or Uπ(St) (if we use ut). We assume that a decision xt = Xπ(St) is feasible at time t. We let “π” carry the information about the type of function f ∈ F (for example, a linear model with specific explanatory variables, or a particular nonlinear model), and any tunable parameters θ ∈ Θf .</p>
+</section>
+<section id="exogenous-information">
+<h3>Exogenous information<a class="headerlink" href="#exogenous-information" title="Link to this heading">#</a></h3>
+<p>We let Wt be any new information that first becomes known at time t (that is, between t − 1 and t). When modeling specific variables, we use “hats” to indicate exogenous information. Thus, Dˆt could be the demand that arises betweent−1andt,orwecouldletpˆt bethechangeinthepricebetweent−1and t.
+The exogenous information process may be stationary or nonstationary, purely ex- ogenous or state (and possibly action) dependent. We let ω represent a sample path W1 , … , WT , where ω ∈ Ω represents one sample path of the exogenous informa- tion. Often, we will create a set Ω with a set of discrete samples that we might represent using (ω1, ω2, … , ωN ).</p>
+</section>
+<section id="transition-function">
+<h3>Transition function<a class="headerlink" href="#transition-function" title="Link to this heading">#</a></h3>
+<p>We denote the transition function by St+1 =SM(St,xt,Wt+1), (1.1) where SM(·) is also known by names such as system model, plant model, plant equation, state equation, and transfer function. Equation (1.1) is the classical form of a transition function which gives the equations from the pre-decision state St to pre-decision state St+1. We can also break down these equations into two steps: pre- decision to post-decision Stx, and then the post-decision Stx to the next pre-decision St+1. The transition function may be a known set of equations, or unknown, such as when we describe human behavior or the evolution of CO2 in the atmosphere. When the equations are unknown the problem is often described as “model free” or “data driven.”</p>
+<p>Transition functions may be linear, continuous nonlinear or step functions. When the state St includes a belief state Bt, then the transition function has to include the updating equations (we illustrate this later).
+Given a policy Xπ(St), an exogenous process Wt and a transition function, we can write our sequence of states, decisions, and information as
+(S0,x0,S0x,W1,S1,x1,S1x,W2,…,xT−1,STx−1,WT,ST).</p>
+</section>
+<section id="objective-functions">
+<h3>Objective functions<a class="headerlink" href="#objective-functions" title="Link to this heading">#</a></h3>
+<p>While there are a number of dimensions to categorize objective functions, we are going to focus on two major classes:</p>
+<section id="final-reward">
+<h4>Final reward<a class="headerlink" href="#final-reward" title="Link to this heading">#</a></h4>
+<p>Here we wish to find a design x to maximize EW F (x, W ). While there are a small handful of problems where this can be solved directly (we illustrate one in chapter 3), we are going to focus on adaptive algorithms, or policies,thatwillproduceasolutionxπ,N whenweusepolicy(oralgorithm)π and have to find the best solution within our budget of N function evaluations. We let S0,W1,W2,…,WN be the initial state and information that is ob- served while we are learning xπ,N . Once we have found xπ,N , we then need to evaluate the quality of this solution by testing it under a new set of outcomes, which we represent using the random variable Wc.
+We can then write our final (or terminal) reward objective function as</p>
+<div class="math notranslate nohighlight">
+\[
+maxE{F(x,W)|S }=E E 1 N 0E F(xπ,N,W). (1.2)
+\]</div>
+<p>Here, the transition function Sn+1 = SM(Sn,Xπ(Sn),Wn+1) describes the
+c</p>
+</section>
+<section id="cumulative-reward">
+<h4>Cumulative reward<a class="headerlink" href="#cumulative-reward" title="Link to this heading">#</a></h4>
+<p>We assume that we are maximizing contributions (or some utility) which we write as C(St, xt) to express its possible dependence on the state St (which might contain a price or other parameters that vary dynamically over time) and the action xt. There are instances where it can be convenient to write C(St, xt, Wt+1) if it is natural to write the contribution after we learn new information (such as sales of a product).
+progression of our algorithm.
+We now write our objective function as
+where</p>
+</section>
+</section>
+</section>
+<section id="id1">
+<h2>Modelling Paradigms<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>There are five basic elements to a sequential decision problem. We are going to quickly summarize these elements, but it is easiest to follow in the context of an example. We encourage readers to flip to the next chapter which illustrates this framework in the context of a simple asset selling problem.
+State variables - The state St of the system at time t is a function of history which, com- bined with a policy and exogenous information, contains all the information that is necessary and sufficient to model our system from time t onward. This means it has to</p>
+</section>
+<section id="gekko">
+<h2>GEKKO<a class="headerlink" href="#gekko" title="Link to this heading">#</a></h2>
+<p>GEKKO is optimization software for mixed-integer and differential algebraic equations. It is coupled with large-scale solvers for linear, quadratic, nonlinear, and mixed integer programming (LP, QP, NLP, MILP, MINLP). Modes of operation include data reconciliation, real-time optimization, dynamic simulation, and nonlinear predictive control. The client or server is freely available with interfaces in MATLAB, Python, or from a web browser.</p>
+<p>GEKKO is a high-level abstraction of mathematical optimization problems. Values in the models are defined by Constants, Parameters, and Variables. The values are related to each other by Intermediates or Equations. Objective functions are defined to maximize or minimize certain values. Objects are built-in collections of values (constants, parameters, and variables) and relationships (intermediates, equations, and objective functions). Objects can build upon other objects with object-oriented relationships.</p>
+<p>The nice thing about Gekko is the ease to go from simulation to optimization. With only little change to our model we can transform un parameter to a decision variables and add an objective function to go from simulation to optimization.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/appendix"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Appendix</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-paradigms">Modelling Paradigms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mathematical-modeling-framework">The Mathematical Modeling Framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-variables">State variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-information-i-t">Other information <span class="math notranslate nohighlight">\(I_t\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-belief-state-b-t">The belief state <span class="math notranslate nohighlight">\(B_t\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-variables">Decision variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exogenous-information">Exogenous information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-function">Transition function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective-functions">Objective functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#final-reward">Final reward</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-reward">Cumulative reward</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Modelling Paradigms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gekko">GEKKO</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dany Pineault
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

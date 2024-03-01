@@ -1,0 +1,1465 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Objective Function &#8212; Modelling the World</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/iam/DiceModel';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Modelling the World</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../history/intro.html">Evolution of the different Paradigms</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history/env-econo.html">Environmental Economics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history/ecolo-econo.html">Ecological Economics</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../economics/growthModels/Intro.html">Growth Models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../economics/growthModels/models/SolowModel.html">The Solow-Swan Growth Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../appendix/intro.html">Appendix</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/modelling.html">Modelling</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/iam/DiceModel.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/iam/DiceModel.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Objective Function</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Objective Function</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#economics-module">Economics Module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">Dynamics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#emission-module">Emission Module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Dynamics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#carbon-cycle">Carbon cycle</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-condition">Initial Condition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-paramaters-denoted-by-phi-ij-in-the-model">Flow paramaters, denoted by Phi_ij in the model</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-model">Climate model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-damage">Climate damage</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Parameters</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span><span class="p">,</span><span class="n">guvectorize</span><span class="p">,</span><span class="n">float64</span>
+<span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="k">as</span> <span class="nn">opt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">NT</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">tstep</span>  <span class="o">=</span> <span class="mi">5</span> <span class="c1"># Years per Period</span>
+<span class="n">ifopt</span>  <span class="o">=</span> <span class="mi">0</span> <span class="c1"># Indicator where optimized is 1 and base is 0</span>
+<span class="n">fosslim</span> <span class="o">=</span> <span class="mi">6000</span> <span class="c1"># Maximum cumulative extraction fossil fuels (GtC); denoted by CCum</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="objective-function">
+<h1>Objective Function<a class="headerlink" href="#objective-function" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Preferences</span>
+
+<span class="n">elasmu</span> <span class="o">=</span> <span class="mf">1.45</span> <span class="c1">#  Elasticity of marginal utility of consumption</span>
+<span class="n">prstp</span> <span class="o">=</span> <span class="mf">0.015</span> <span class="c1">#   Initial rate of social time preference per year </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fOBJ</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">sign</span><span class="p">,</span><span class="n">iI</span><span class="p">,</span><span class="n">iK</span><span class="p">,</span><span class="n">ial</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">iYGROSS</span><span class="p">,</span><span class="n">isigma</span><span class="p">,</span><span class="n">iEIND</span><span class="p">,</span><span class="n">iE</span><span class="p">,</span><span class="n">iCCA</span><span class="p">,</span><span class="n">iCCATOT</span><span class="p">,</span><span class="n">icumetree</span><span class="p">,</span><span class="n">iMAT</span><span class="p">,</span><span class="n">iMU</span><span class="p">,</span><span class="n">iML</span><span class="p">,</span><span class="n">iFORC</span><span class="p">,</span><span class="n">iTATM</span><span class="p">,</span><span class="n">iTOCEAN</span><span class="p">,</span><span class="n">iDAMFRAC</span><span class="p">,</span><span class="n">iDAMAGES</span><span class="p">,</span><span class="n">iABATECOST</span><span class="p">,</span><span class="n">icost1</span><span class="p">,</span><span class="n">iMCABATE</span><span class="p">,</span>
+         <span class="n">iCPRICE</span><span class="p">,</span><span class="n">iYNET</span><span class="p">,</span><span class="n">iY</span><span class="p">,</span><span class="n">iC</span><span class="p">,</span><span class="n">iCPC</span><span class="p">,</span><span class="n">iPERIODU</span><span class="p">,</span><span class="n">iCEMUTOTPER</span><span class="p">,</span><span class="n">iRI</span><span class="p">,</span><span class="n">iNT</span><span class="p">):</span>
+    
+    <span class="n">iMIU</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">NT</span><span class="p">]</span>
+    <span class="n">iS</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">NT</span><span class="p">:(</span><span class="mi">2</span><span class="o">*</span><span class="n">NT</span><span class="p">)]</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iNT</span><span class="p">):</span>
+        <span class="n">iK</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fK</span><span class="p">(</span><span class="n">iK</span><span class="p">,</span><span class="n">iI</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iYGROSS</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fYGROSS</span><span class="p">(</span><span class="n">ial</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">iK</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iEIND</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fEIND</span><span class="p">(</span><span class="n">iYGROSS</span><span class="p">,</span> <span class="n">iMIU</span><span class="p">,</span> <span class="n">isigma</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iE</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fE</span><span class="p">(</span><span class="n">iEIND</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iCCA</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fCCA</span><span class="p">(</span><span class="n">iCCA</span><span class="p">,</span><span class="n">iEIND</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iCCATOT</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fCCATOT</span><span class="p">(</span><span class="n">iCCA</span><span class="p">,</span><span class="n">icumetree</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iMAT</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fMAT</span><span class="p">(</span><span class="n">iMAT</span><span class="p">,</span><span class="n">iMU</span><span class="p">,</span><span class="n">iE</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iML</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fML</span><span class="p">(</span><span class="n">iML</span><span class="p">,</span><span class="n">iMU</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iMU</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fMU</span><span class="p">(</span><span class="n">iMAT</span><span class="p">,</span><span class="n">iMU</span><span class="p">,</span><span class="n">iML</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iFORC</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fFORC</span><span class="p">(</span><span class="n">iMAT</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iTATM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fTATM</span><span class="p">(</span><span class="n">iTATM</span><span class="p">,</span><span class="n">iFORC</span><span class="p">,</span><span class="n">iTOCEAN</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iTOCEAN</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fTOCEAN</span><span class="p">(</span><span class="n">iTATM</span><span class="p">,</span><span class="n">iTOCEAN</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iDAMFRAC</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fDAMFRAC</span><span class="p">(</span><span class="n">iTATM</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iDAMAGES</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fDAMAGES</span><span class="p">(</span><span class="n">iYGROSS</span><span class="p">,</span><span class="n">iDAMFRAC</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iABATECOST</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fABATECOST</span><span class="p">(</span><span class="n">iYGROSS</span><span class="p">,</span><span class="n">iMIU</span><span class="p">,</span><span class="n">icost1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iMCABATE</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fMCABATE</span><span class="p">(</span><span class="n">iMIU</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iCPRICE</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fCPRICE</span><span class="p">(</span><span class="n">iMIU</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iYNET</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fYNET</span><span class="p">(</span><span class="n">iYGROSS</span><span class="p">,</span> <span class="n">iDAMFRAC</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">iY</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fY</span><span class="p">(</span><span class="n">iYNET</span><span class="p">,</span><span class="n">iABATECOST</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iI</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fI</span><span class="p">(</span><span class="n">iS</span><span class="p">,</span><span class="n">iY</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iC</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fC</span><span class="p">(</span><span class="n">iY</span><span class="p">,</span><span class="n">iI</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iCPC</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fCPC</span><span class="p">(</span><span class="n">iC</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iPERIODU</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fPERIODU</span><span class="p">(</span><span class="n">iC</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iCEMUTOTPER</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fCEMUTOTPER</span><span class="p">(</span><span class="n">iPERIODU</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iRI</span> <span class="o">=</span> <span class="n">fRI</span><span class="p">(</span><span class="n">iCPC</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        
+    <span class="n">resUtility</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">fUTILITY</span><span class="p">(</span><span class="n">iCEMUTOTPER</span><span class="p">,</span> <span class="n">resUtility</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">sign</span><span class="o">*</span><span class="n">resUtility</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="economics-module">
+<h1>Economics Module<a class="headerlink" href="#economics-module" title="Link to this heading">#</a></h1>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gama</span>  <span class="o">=</span> <span class="mf">0.300</span> <span class="c1">#   Capital elasticity in production function         /.300 /</span>
+<span class="n">pop0</span>  <span class="o">=</span> <span class="mi">7403</span>   <span class="c1"># Initial world population 2015 (millions)          /7403 /</span>
+<span class="n">popadj</span> <span class="o">=</span> <span class="mf">0.134</span> <span class="c1">#  Growth rate to calibrate to 2050 pop projection  /0.134/</span>
+<span class="n">popasym</span> <span class="o">=</span> <span class="mi">11500</span> <span class="c1"># Asymptotic population (millions)                 /11500/</span>
+<span class="n">dk</span>  <span class="o">=</span> <span class="mf">0.100</span> <span class="c1">#     Depreciation rate on capital (per year)           /.100 /</span>
+<span class="n">q0</span>  <span class="o">=</span> <span class="mf">105.5</span> <span class="c1">#     Initial world gross output 2015 (trill 2010 USD) /105.5/</span>
+<span class="n">k0</span>  <span class="o">=</span> <span class="mi">223</span> <span class="c1">#     Initial capital value 2015 (trill 2010 USD)        /223  /</span>
+<span class="n">a0</span>  <span class="o">=</span> <span class="mf">5.115</span> <span class="c1">#     Initial level of total factor productivity       /5.115/</span>
+<span class="n">ga0</span>  <span class="o">=</span> <span class="mf">0.076</span> <span class="c1">#    Initial growth rate for TFP per 5 years          /0.076/</span>
+<span class="n">dela</span>  <span class="o">=</span> <span class="mf">0.005</span> <span class="c1">#   Decline rate of TFP per 5 years                  /0.005/</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dynamics">
+<h2>Dynamics<a class="headerlink" href="#dynamics" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#The total production without climate losses denoted previously by YGROSS</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fYGROSS</span><span class="p">(</span><span class="n">ial</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">iK</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">ial</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="p">((</span><span class="n">il</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">gama</span><span class="p">))</span> <span class="o">*</span> <span class="n">iK</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">**</span><span class="n">gama</span>
+
+<span class="c1">#The production under the climate damages cost</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fYNET</span><span class="p">(</span><span class="n">iYGROSS</span><span class="p">,</span> <span class="n">iDAMFRAC</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">iYGROSS</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">iDAMFRAC</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+
+<span class="c1">#Production after abatement cost</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fY</span><span class="p">(</span><span class="n">iYNET</span><span class="p">,</span><span class="n">iABATECOST</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">iYNET</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">-</span> <span class="n">iABATECOST</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+<span class="c1">#Consumption Eq. 11</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fC</span><span class="p">(</span><span class="n">iY</span><span class="p">,</span><span class="n">iI</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">iY</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">-</span> <span class="n">iI</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+<span class="c1">#Per capita consumption, Eq. 12</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fCPC</span><span class="p">(</span><span class="n">iC</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">iC</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">/</span> <span class="n">il</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+<span class="c1">#Saving policy: investment</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fI</span><span class="p">(</span><span class="n">iS</span><span class="p">,</span><span class="n">iY</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">iS</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">iY</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> 
+
+<span class="c1">#Capital dynamics Eq. 13</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fK</span><span class="p">(</span><span class="n">iK</span><span class="p">,</span><span class="n">iI</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">k0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">dk</span><span class="p">)</span><span class="o">**</span><span class="n">tstep</span> <span class="o">*</span> <span class="n">iK</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">tstep</span> <span class="o">*</span> <span class="n">iI</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="emission-module">
+<h1>Emission Module<a class="headerlink" href="#emission-module" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gsigma1</span>  <span class="o">=</span> <span class="o">-</span><span class="mf">0.0152</span> <span class="c1"># Initial growth of sigma (per year)            /-0.0152/</span>
+<span class="n">dsig</span>  <span class="o">=</span> <span class="o">-</span><span class="mf">0.001</span> <span class="c1">#   Decline rate of decarbonization (per period)    /-0.001 /</span>
+<span class="n">eland0</span> <span class="o">=</span> <span class="mf">2.6</span> <span class="c1">#  Carbon emissions from land 2015 (GtCO2 per year)   / 2.6   /</span>
+<span class="n">deland</span> <span class="o">=</span> <span class="mf">0.115</span> <span class="c1"># Decline rate of land emissions (per period)        / .115  /</span>
+<span class="n">e0</span> <span class="o">=</span> <span class="mf">35.85</span> <span class="c1">#    Industrial emissions 2015 (GtCO2 per year)       /35.85  /</span>
+<span class="n">miu0</span>  <span class="o">=</span> <span class="mf">0.03</span> <span class="c1">#   Initial emissions control rate for base case 2015  /.03    /</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>Dynamics<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retuns the total carbon emissions; Eq. 18</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],int32)&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">fE</span><span class="p">(</span><span class="n">iEIND</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">iEIND</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="n">etree</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+<span class="c1">#Eq.14: Determines the emission of carbon by industry EIND</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],float64[:],int32)&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">fEIND</span><span class="p">(</span><span class="n">iYGROSS</span><span class="p">,</span> <span class="n">iMIU</span><span class="p">,</span> <span class="n">isigma</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">isigma</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">iYGROSS</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">iMIU</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+
+<span class="c1">#Cumulative industrial emission of carbon</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">fCCA</span><span class="p">(</span><span class="n">iCCA</span><span class="p">,</span><span class="n">iEIND</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">iCCA</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">iEIND</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mf">3.666</span>
+
+<span class="c1">#Cumulative total carbon emission</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fCCATOT</span><span class="p">(</span><span class="n">iCCA</span><span class="p">,</span><span class="n">icumetree</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">iCCA</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="n">icumetree</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypingError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Retuns the total carbon emissions; Eq. 18</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],int32)&#39;</span><span class="p">)</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">def</span> <span class="nf">fE</span><span class="p">(</span><span class="n">iEIND</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">return</span> <span class="n">iEIND</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="n">etree</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1">#Eq.14: Determines the emission of carbon by industry EIND</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/decorators.py:241,</span> in <span class="ni">_jit.&lt;locals&gt;.wrapper</span><span class="nt">(func)</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span>     <span class="k">with</span> <span class="n">typeinfer</span><span class="o">.</span><span class="n">register_dispatcher</span><span class="p">(</span><span class="n">disp</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">240</span>         <span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="n">sigs</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">241</span>             <span class="n">disp</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span>         <span class="n">disp</span><span class="o">.</span><span class="n">disable_compile</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">243</span> <span class="k">return</span> <span class="n">disp</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/dispatcher.py:965,</span> in <span class="ni">Dispatcher.compile</span><span class="nt">(self, sig)</span>
+<span class="g g-Whitespace">    </span><span class="mi">963</span> <span class="k">with</span> <span class="n">ev</span><span class="o">.</span><span class="n">trigger_event</span><span class="p">(</span><span class="s2">&quot;numba:compile&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">ev_details</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">964</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">965</span>         <span class="n">cres</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiler</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">return_type</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">966</span>     <span class="k">except</span> <span class="n">errors</span><span class="o">.</span><span class="n">ForceLiteralArg</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">967</span>         <span class="k">def</span> <span class="nf">folded</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kws</span><span class="p">):</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/dispatcher.py:129,</span> in <span class="ni">_FunctionCompiler.compile</span><span class="nt">(self, args, return_type)</span>
+<span class="g g-Whitespace">    </span><span class="mi">127</span>     <span class="k">return</span> <span class="n">retval</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">129</span>     <span class="k">raise</span> <span class="n">retval</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/dispatcher.py:139,</span> in <span class="ni">_FunctionCompiler._compile_cached</span><span class="nt">(self, args, return_type)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="k">pass</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">139</span>     <span class="n">retval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compile_core</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">return_type</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span> <span class="k">except</span> <span class="n">errors</span><span class="o">.</span><span class="n">TypingError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_failed_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/dispatcher.py:152,</span> in <span class="ni">_FunctionCompiler._compile_core</span><span class="nt">(self, args, return_type)</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span> <span class="n">flags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_customize_flags</span><span class="p">(</span><span class="n">flags</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span> <span class="n">impl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_implementation</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="p">{})</span>
+<span class="ne">--&gt; </span><span class="mi">152</span> <span class="n">cres</span> <span class="o">=</span> <span class="n">compiler</span><span class="o">.</span><span class="n">compile_extra</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targetdescr</span><span class="o">.</span><span class="n">typing_context</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span>                               <span class="bp">self</span><span class="o">.</span><span class="n">targetdescr</span><span class="o">.</span><span class="n">target_context</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span>                               <span class="n">impl</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">155</span>                               <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="n">return_type</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span>                               <span class="n">flags</span><span class="o">=</span><span class="n">flags</span><span class="p">,</span> <span class="nb">locals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">locals</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span>                               <span class="n">pipeline_class</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline_class</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span> <span class="c1"># Check typing error if object mode is used</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="k">if</span> <span class="n">cres</span><span class="o">.</span><span class="n">typing_error</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">flags</span><span class="o">.</span><span class="n">enable_pyobject</span><span class="p">:</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/compiler.py:762,</span> in <span class="ni">compile_extra</span><span class="nt">(typingctx, targetctx, func, args, return_type, flags, locals, library, pipeline_class)</span>
+<span class="g g-Whitespace">    </span><span class="mi">738</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Compiler entry point</span>
+<span class="g g-Whitespace">    </span><span class="mi">739</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">740</span><span class="sd"> Parameter</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">758</span><span class="sd">     compiler pipeline</span>
+<span class="g g-Whitespace">    </span><span class="mi">759</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">760</span> <span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipeline_class</span><span class="p">(</span><span class="n">typingctx</span><span class="p">,</span> <span class="n">targetctx</span><span class="p">,</span> <span class="n">library</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">761</span>                           <span class="n">args</span><span class="p">,</span> <span class="n">return_type</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="nb">locals</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">762</span> <span class="k">return</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">compile_extra</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/compiler.py:460,</span> in <span class="ni">CompilerBase.compile_extra</span><span class="nt">(self, func)</span>
+<span class="g g-Whitespace">    </span><span class="mi">458</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">lifted</span> <span class="o">=</span> <span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">lifted_from</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">460</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compile_bytecode</span><span class="p">()</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/compiler.py:528,</span> in <span class="ni">CompilerBase._compile_bytecode</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">524</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">525</span><span class="sd"> Populate and run pipeline for bytecode input</span>
+<span class="g g-Whitespace">    </span><span class="mi">526</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">527</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">func_ir</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">528</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compile_core</span><span class="p">()</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/compiler.py:507,</span> in <span class="ni">CompilerBase._compile_core</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">505</span>         <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">fail_reason</span> <span class="o">=</span> <span class="n">e</span>
+<span class="g g-Whitespace">    </span><span class="mi">506</span>         <span class="k">if</span> <span class="n">is_final_pipeline</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">507</span>             <span class="k">raise</span> <span class="n">e</span>
+<span class="g g-Whitespace">    </span><span class="mi">508</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">509</span>     <span class="k">raise</span> <span class="n">CompilerError</span><span class="p">(</span><span class="s2">&quot;All available pipelines exhausted&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/compiler.py:494,</span> in <span class="ni">CompilerBase._compile_core</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">492</span> <span class="n">res</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">493</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">494</span>     <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">495</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">cr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">496</span>         <span class="k">break</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/compiler_machinery.py:368,</span> in <span class="ni">PassManager.run</span><span class="nt">(self, state)</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span> <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Failed in </span><span class="si">%s</span><span class="s2"> mode pipeline (step: </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> \
+<span class="g g-Whitespace">    </span><span class="mi">366</span>     <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline_name</span><span class="p">,</span> <span class="n">pass_desc</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">367</span> <span class="n">patched_exception</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_patch_error</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">368</span> <span class="k">raise</span> <span class="n">patched_exception</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/compiler_machinery.py:356,</span> in <span class="ni">PassManager.run</span><span class="nt">(self, state)</span>
+<span class="g g-Whitespace">    </span><span class="mi">354</span> <span class="n">pass_inst</span> <span class="o">=</span> <span class="n">_pass_registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pss</span><span class="p">)</span><span class="o">.</span><span class="n">pass_inst</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pass_inst</span><span class="p">,</span> <span class="n">CompilerPass</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">356</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_runPass</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">pass_inst</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">357</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">358</span>     <span class="k">raise</span> <span class="ne">BaseException</span><span class="p">(</span><span class="s2">&quot;Legacy pass in use&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/compiler_lock.py:35,</span> in <span class="ni">_CompilerLock.__call__.&lt;locals&gt;._acquire_compile_lock</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="k">def</span> <span class="nf">_acquire_compile_lock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="k">with</span> <span class="bp">self</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">35</span>         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/compiler_machinery.py:311,</span> in <span class="ni">PassManager._runPass</span><span class="nt">(self, index, pss, internal_state)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>     <span class="n">mutated</span> <span class="o">|=</span> <span class="n">check</span><span class="p">(</span><span class="n">pss</span><span class="o">.</span><span class="n">run_initialization</span><span class="p">,</span> <span class="n">internal_state</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span> <span class="k">with</span> <span class="n">SimpleTimer</span><span class="p">()</span> <span class="k">as</span> <span class="n">pass_time</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>     <span class="n">mutated</span> <span class="o">|=</span> <span class="n">check</span><span class="p">(</span><span class="n">pss</span><span class="o">.</span><span class="n">run_pass</span><span class="p">,</span> <span class="n">internal_state</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> <span class="k">with</span> <span class="n">SimpleTimer</span><span class="p">()</span> <span class="k">as</span> <span class="n">finalize_time</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>     <span class="n">mutated</span> <span class="o">|=</span> <span class="n">check</span><span class="p">(</span><span class="n">pss</span><span class="o">.</span><span class="n">run_finalizer</span><span class="p">,</span> <span class="n">internal_state</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/compiler_machinery.py:273,</span> in <span class="ni">PassManager._runPass.&lt;locals&gt;.check</span><span class="nt">(func, compiler_state)</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span> <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">compiler_state</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">273</span>     <span class="n">mangled</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">compiler_state</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span>     <span class="k">if</span> <span class="n">mangled</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span>         <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;CompilerPass implementations should return True/False. &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span>                <span class="s2">&quot;CompilerPass with name &#39;</span><span class="si">%s</span><span class="s2">&#39; did not.&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/typed_passes.py:110,</span> in <span class="ni">BaseTypeInference.run_pass</span><span class="nt">(self, state)</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span><span class="sd"> Type inference and legalization</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span> <span class="k">with</span> <span class="n">fallback_context</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="s1">&#39;Function &quot;</span><span class="si">%s</span><span class="s1">&quot; failed type inference&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span>                       <span class="o">%</span> <span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">func_id</span><span class="o">.</span><span class="n">func_name</span><span class="p">,)):</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span>     <span class="c1"># Type inference</span>
+<span class="ne">--&gt; </span><span class="mi">110</span>     <span class="n">typemap</span><span class="p">,</span> <span class="n">return_type</span><span class="p">,</span> <span class="n">calltypes</span><span class="p">,</span> <span class="n">errs</span> <span class="o">=</span> <span class="n">type_inference_stage</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span>         <span class="n">state</span><span class="o">.</span><span class="n">typingctx</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span>         <span class="n">state</span><span class="o">.</span><span class="n">targetctx</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span>         <span class="n">state</span><span class="o">.</span><span class="n">func_ir</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span>         <span class="n">state</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span>         <span class="n">state</span><span class="o">.</span><span class="n">return_type</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>         <span class="n">state</span><span class="o">.</span><span class="n">locals</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>         <span class="n">raise_errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_raise_errors</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="n">state</span><span class="o">.</span><span class="n">typemap</span> <span class="o">=</span> <span class="n">typemap</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span>     <span class="c1"># save errors in case of partial typing</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/typed_passes.py:86,</span> in <span class="ni">type_inference_stage</span><span class="nt">(typingctx, targetctx, interp, args, return_type, locals, raise_errors)</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">locals</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span>     <span class="n">infer</span><span class="o">.</span><span class="n">seed_type</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">86</span> <span class="n">infer</span><span class="o">.</span><span class="n">build_constraint</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span> <span class="c1"># return errors in case of partial typing</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span> <span class="n">errs</span> <span class="o">=</span> <span class="n">infer</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">raise_errors</span><span class="o">=</span><span class="n">raise_errors</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/typeinfer.py:1039,</span> in <span class="ni">TypeInferer.build_constraint</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1037</span> <span class="k">for</span> <span class="n">blk</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span>     <span class="k">for</span> <span class="n">inst</span> <span class="ow">in</span> <span class="n">blk</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1039</span>         <span class="bp">self</span><span class="o">.</span><span class="n">constrain_statement</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/typeinfer.py:1386,</span> in <span class="ni">TypeInferer.constrain_statement</span><span class="nt">(self, inst)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1384</span> <span class="k">def</span> <span class="nf">constrain_statement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1385</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">ir</span><span class="o">.</span><span class="n">Assign</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1386</span>         <span class="bp">self</span><span class="o">.</span><span class="n">typeof_assign</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1387</span>     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">ir</span><span class="o">.</span><span class="n">SetItem</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1388</span>         <span class="bp">self</span><span class="o">.</span><span class="n">typeof_setitem</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/typeinfer.py:1461,</span> in <span class="ni">TypeInferer.typeof_assign</span><span class="nt">(self, inst)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1458</span>     <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Propagate</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="n">inst</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1459</span>                                       <span class="n">src</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">inst</span><span class="o">.</span><span class="n">loc</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1460</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">Global</span><span class="p">,</span> <span class="n">ir</span><span class="o">.</span><span class="n">FreeVar</span><span class="p">)):</span>
+<span class="ne">-&gt; </span><span class="mi">1461</span>     <span class="bp">self</span><span class="o">.</span><span class="n">typeof_global</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">inst</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1462</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ir</span><span class="o">.</span><span class="n">Arg</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1463</span>     <span class="bp">self</span><span class="o">.</span><span class="n">typeof_arg</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">inst</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/typeinfer.py:1561,</span> in <span class="ni">TypeInferer.typeof_global</span><span class="nt">(self, inst, target, gvar)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1559</span> <span class="k">def</span> <span class="nf">typeof_global</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">gvar</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1560</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1561</span>         <span class="n">typ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve_value_type</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">gvar</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1562</span>     <span class="k">except</span> <span class="n">TypingError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1563</span>         <span class="k">if</span> <span class="p">(</span><span class="n">gvar</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">func_id</span><span class="o">.</span><span class="n">func_name</span>
+<span class="g g-Whitespace">   </span><span class="mi">1564</span>                 <span class="ow">and</span> <span class="n">gvar</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">_temporary_dispatcher_map</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1565</span>             <span class="c1"># Self-recursion case where the dispatcher is not (yet?) known</span>
+<span class="g g-Whitespace">   </span><span class="mi">1566</span>             <span class="c1"># as a global variable</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/numba/core/typeinfer.py:1482,</span> in <span class="ni">TypeInferer.resolve_value_type</span><span class="nt">(self, inst, val)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1480</span> <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1481</span>     <span class="n">msg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1482</span> <span class="k">raise</span> <span class="n">TypingError</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">inst</span><span class="o">.</span><span class="n">loc</span><span class="p">)</span>
+
+<span class="nn">TypingError: Failed</span> in <span class="ni">nopython mode pipeline </span><span class="nt">(step: nopython frontend)</span>
+<span class="ne">NameError</span>: name &#39;etree&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="carbon-cycle">
+<h1>Carbon cycle<a class="headerlink" href="#carbon-cycle" title="Link to this heading">#</a></h1>
+<section id="initial-condition">
+<h2>Initial Condition<a class="headerlink" href="#initial-condition" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mat0</span> <span class="o">=</span> <span class="mi">851</span> <span class="c1">#  Initial Concentration in atmosphere 2015 (GtC)       /851  /</span>
+<span class="n">mu0</span>  <span class="o">=</span> <span class="mi">460</span> <span class="c1">#  Initial Concentration in upper strata 2015 (GtC)     /460  /</span>
+<span class="n">ml0</span>  <span class="o">=</span> <span class="mi">1740</span> <span class="c1">#  Initial Concentration in lower strata 2015 (GtC)    /1740 /</span>
+<span class="n">mateq</span> <span class="o">=</span> <span class="mi">588</span> <span class="c1"># mateq Equilibrium concentration atmosphere  (GtC)    /588  /</span>
+<span class="n">mueq</span>  <span class="o">=</span> <span class="mi">360</span> <span class="c1"># mueq Equilibrium concentration in upper strata (GtC) /360  /</span>
+<span class="n">mleq</span> <span class="o">=</span> <span class="mi">1720</span> <span class="c1"># mleq Equilibrium concentration in lower strata (GtC) /1720 /</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="flow-paramaters-denoted-by-phi-ij-in-the-model">
+<h2>Flow paramaters, denoted by Phi_ij in the model<a class="headerlink" href="#flow-paramaters-denoted-by-phi-ij-in-the-model" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b12</span>  <span class="o">=</span> <span class="mf">0.12</span> <span class="c1">#    Carbon cycle transition matrix                     /.12  /</span>
+<span class="n">b23</span>  <span class="o">=</span> <span class="mf">0.007</span> <span class="c1">#   Carbon cycle transition matrix                    /0.007/</span>
+
+<span class="c1">#* These are for declaration and are defined later</span>
+<span class="n">b11</span>  <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># Carbon cycle transition matrix</span>
+<span class="n">b21</span>  <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Carbon cycle transition matrix</span>
+<span class="n">b22</span>  <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Carbon cycle transition matrix</span>
+<span class="n">b32</span>  <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Carbon cycle transition matrix</span>
+<span class="n">b33</span>  <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Carbon cycle transition matrix</span>
+<span class="n">sig0</span>  <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Carbon intensity 2010 (kgCO2 per output 2005 USD 2010)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="climate-model">
+<h1>Climate model<a class="headerlink" href="#climate-model" title="Link to this heading">#</a></h1>
+<section id="id3">
+<h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t2xco2</span>  <span class="o">=</span> <span class="mf">3.1</span> <span class="c1"># Equilibrium temp impact (oC per doubling CO2)    / 3.1 /</span>
+<span class="n">fex0</span>  <span class="o">=</span> <span class="mf">0.5</span> <span class="c1">#   2015 forcings of non-CO2 GHG (Wm-2)              / 0.5 /</span>
+<span class="n">fex1</span>  <span class="o">=</span> <span class="mf">1.0</span> <span class="c1">#   2100 forcings of non-CO2 GHG (Wm-2)              / 1.0 /</span>
+<span class="n">tocean0</span>  <span class="o">=</span> <span class="mf">0.0068</span> <span class="c1"># Initial lower stratum temp change (C from 1900) /.0068/</span>
+<span class="n">tatm0</span>  <span class="o">=</span> <span class="mf">0.85</span> <span class="c1">#  Initial atmospheric temp change (C from 1900)    /0.85/</span>
+<span class="n">c1</span>  <span class="o">=</span> <span class="mf">0.1005</span> <span class="c1">#     Climate equation coefficient for upper level  /0.1005/</span>
+<span class="n">c3</span>  <span class="o">=</span> <span class="mf">0.088</span> <span class="c1">#     Transfer coefficient upper to lower stratum    /0.088/</span>
+<span class="n">c4</span>  <span class="o">=</span> <span class="mf">0.025</span> <span class="c1">#     Transfer coefficient for lower level           /0.025/</span>
+<span class="n">fco22x</span>  <span class="o">=</span> <span class="mf">3.6813</span> <span class="c1"># eta in the model; Eq.22 : Forcings of equilibrium CO2 doubling (Wm-2)   /3.6813 /</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="climate-damage">
+<h1>Climate damage<a class="headerlink" href="#climate-damage" title="Link to this heading">#</a></h1>
+<section id="id4">
+<h2>Parameters<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a10</span>  <span class="o">=</span> <span class="mi">0</span> <span class="c1">#     Initial damage intercept                         /0   /</span>
+<span class="n">a20</span>  <span class="o">=</span> <span class="kc">None</span> <span class="c1">#     Initial damage quadratic term</span>
+<span class="n">a1</span>  <span class="o">=</span> <span class="mi">0</span> <span class="c1">#      Damage intercept                                 /0   /</span>
+<span class="n">a2</span>  <span class="o">=</span> <span class="mf">0.00236</span> <span class="c1">#      Damage quadratic term                     /0.00236/</span>
+<span class="n">a3</span>  <span class="o">=</span> <span class="mf">2.00</span> <span class="c1">#      Damage exponent                              /2.00   /</span>
+
+<span class="c1">#** Abatement cost</span>
+<span class="n">expcost2</span> <span class="o">=</span> <span class="mf">2.6</span> <span class="c1"># Theta2 in the model, Eq. 10 Exponent of control cost function             / 2.6  /</span>
+<span class="n">pback</span>  <span class="o">=</span> <span class="mi">550</span> <span class="c1">#   Cost of backstop 2010$ per tCO2 2015          / 550  /</span>
+<span class="n">gback</span>  <span class="o">=</span> <span class="mf">0.025</span> <span class="c1">#   Initial cost decline backstop cost per period / .025/</span>
+<span class="n">limmiu</span>  <span class="o">=</span> <span class="mf">1.2</span> <span class="c1">#  Upper limit on control rate after 2150        / 1.2 /</span>
+<span class="n">tnopol</span>  <span class="o">=</span> <span class="mi">45</span> <span class="c1">#  Period before which no emissions controls base  / 45   /</span>
+<span class="n">cprice0</span>  <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Initial base carbon price (2010$ per tCO2)      / 2    /</span>
+<span class="n">gcprice</span>  <span class="o">=</span> <span class="mf">0.02</span> <span class="c1"># Growth rate of base carbon price per year     /.02  /</span>
+
+<span class="c1">#** Scaling and inessential parameters</span>
+<span class="c1">#* Note that these are unnecessary for the calculations</span>
+<span class="c1">#* They ensure that MU of first period&#39;s consumption =1 and PV cons = PV utilty</span>
+<span class="n">scale1</span>  <span class="o">=</span> <span class="mf">0.0302455265681763</span> <span class="c1">#    Multiplicative scaling coefficient           /0.0302455265681763 /</span>
+<span class="n">scale2</span>  <span class="o">=</span> <span class="o">-</span><span class="mf">10993.704</span> <span class="c1">#    Additive scaling coefficient       /-10993.704/;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#* Parameters for long-run consistency of carbon cycle </span>
+<span class="c1">#(Question)</span>
+<span class="n">b11</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">b12</span>
+<span class="n">b21</span> <span class="o">=</span> <span class="n">b12</span><span class="o">*</span><span class="n">mateq</span><span class="o">/</span><span class="n">mueq</span>
+<span class="n">b22</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">b21</span> <span class="o">-</span> <span class="n">b23</span>
+<span class="n">b32</span> <span class="o">=</span> <span class="n">b23</span><span class="o">*</span><span class="n">mueq</span><span class="o">/</span><span class="n">mleq</span>
+<span class="n">b33</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">b32</span>
+
+<span class="c1">#* Further definitions of parameters</span>
+<span class="n">a20</span> <span class="o">=</span> <span class="n">a2</span>
+<span class="n">sig0</span> <span class="o">=</span> <span class="n">e0</span><span class="o">/</span><span class="p">(</span><span class="n">q0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">miu0</span><span class="p">))</span> <span class="c1">#From Eq. 14</span>
+<span class="n">lam</span> <span class="o">=</span> <span class="n">fco22x</span><span class="o">/</span> <span class="n">t2xco2</span> <span class="c1">#From Eq. 25</span>
+
+<span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">pop0</span> <span class="c1">#Labor force</span>
+<span class="n">al</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span> 
+<span class="n">al</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a0</span>
+<span class="n">gsig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span> 
+<span class="n">gsig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsigma1</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span> <span class="n">sig0</span>
+<span class="n">ga</span> <span class="o">=</span> <span class="n">ga0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">dela</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="c1">#TFP growth rate dynamics, Eq. 7</span>
+<span class="n">pbacktime</span> <span class="o">=</span> <span class="n">pback</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">gback</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#Backstop price</span>
+<span class="n">etree</span> <span class="o">=</span> <span class="n">eland0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">deland</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#Emissions from deforestration</span>
+<span class="n">rr</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="n">prstp</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">tstep</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span> <span class="c1">#Eq. 3</span>
+<span class="c1">#The following three equations define the exogenous radiative forcing; used in Eq. 23  </span>
+<span class="n">forcoth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">NT</span><span class="p">,</span><span class="n">fex0</span><span class="p">)</span>
+<span class="n">forcoth</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">18</span><span class="p">]</span> <span class="o">=</span> <span class="n">forcoth</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">18</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">17</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fex1</span><span class="o">-</span><span class="n">fex0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">18</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">forcoth</span><span class="p">[</span><span class="mi">18</span><span class="p">:</span><span class="n">NT</span><span class="p">]</span> <span class="o">=</span> <span class="n">forcoth</span><span class="p">[</span><span class="mi">18</span><span class="p">:</span><span class="n">NT</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">fex1</span><span class="o">-</span><span class="n">fex0</span><span class="p">)</span>
+<span class="n">optlrsav</span> <span class="o">=</span> <span class="p">(</span><span class="n">dk</span> <span class="o">+</span> <span class="mf">.004</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dk</span> <span class="o">+</span> <span class="mf">.004</span><span class="o">*</span><span class="n">elasmu</span> <span class="o">+</span> <span class="n">prstp</span><span class="p">)</span><span class="o">*</span><span class="n">gama</span> <span class="c1">#Optimal long-run savings rate used for transversality (Question)</span>
+<span class="n">cost1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">cumetree</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">cumetree</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">cpricebase</span> <span class="o">=</span> <span class="n">cprice0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">gcprice</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> 
+
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;(float64[:], int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">InitializeLabor</span><span class="p">(</span><span class="n">il</span><span class="p">,</span><span class="n">iNT</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">iNT</span><span class="p">):</span>
+        <span class="n">il</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">il</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">popasym</span> <span class="o">/</span> <span class="n">il</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="n">popadj</span>
+
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;(float64[:], int32)&#39;</span><span class="p">)</span>        
+<span class="k">def</span> <span class="nf">InitializeTFP</span><span class="p">(</span><span class="n">ial</span><span class="p">,</span><span class="n">iNT</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">iNT</span><span class="p">):</span>
+        <span class="n">ial</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ial</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ga</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;(float64[:], int32)&#39;</span><span class="p">)</span>        
+<span class="k">def</span> <span class="nf">InitializeGrowthSigma</span><span class="p">(</span><span class="n">igsig</span><span class="p">,</span><span class="n">iNT</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">iNT</span><span class="p">):</span>
+        <span class="n">igsig</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">igsig</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="n">dsig</span><span class="p">)</span><span class="o">**</span><span class="n">tstep</span><span class="p">)</span>
+        
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;(float64[:], float64[:],float64[:],int32)&#39;</span><span class="p">)</span>        
+<span class="k">def</span> <span class="nf">InitializeSigma</span><span class="p">(</span><span class="n">isigma</span><span class="p">,</span><span class="n">igsig</span><span class="p">,</span><span class="n">icost1</span><span class="p">,</span><span class="n">iNT</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">iNT</span><span class="p">):</span>
+        <span class="n">isigma</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span>  <span class="n">isigma</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">igsig</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">tstep</span><span class="p">)</span>
+        <span class="n">icost1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">pbacktime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">isigma</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="o">/</span> <span class="n">expcost2</span> <span class="o">/</span><span class="mi">1000</span>
+        
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;(float64[:], int32)&#39;</span><span class="p">)</span>        
+<span class="k">def</span> <span class="nf">InitializeCarbonTree</span><span class="p">(</span><span class="n">icumetree</span><span class="p">,</span><span class="n">iNT</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">iNT</span><span class="p">):</span>
+        <span class="n">icumetree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">icumetree</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">etree</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mf">3.666</span><span class="p">)</span>
+
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">First: Functions related to emissions of carbon and weather damages</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="c1">#Eq. 22: the dynamics of the radiative forcing</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fFORC</span><span class="p">(</span><span class="n">iMAT</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">fco22x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">iMAT</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">/</span><span class="mf">588.000</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">forcoth</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+<span class="c1"># Dynamics of Omega; Eq.9</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fDAMFRAC</span><span class="p">(</span><span class="n">iTATM</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a1</span><span class="o">*</span><span class="n">iTATM</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="n">a2</span><span class="o">*</span><span class="n">iTATM</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">**</span><span class="n">a3</span>
+
+<span class="c1">#Calculate damages as a function of Gross industrial production; Eq.8 </span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fDAMAGES</span><span class="p">(</span><span class="n">iYGROSS</span><span class="p">,</span><span class="n">iDAMFRAC</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">iYGROSS</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">iDAMFRAC</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+<span class="c1">#Dynamics of Lambda; Eq. 10 - cost of the reudction of carbon emission (Abatement cost)</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],float64[:],int32)&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">fABATECOST</span><span class="p">(</span><span class="n">iYGROSS</span><span class="p">,</span><span class="n">iMIU</span><span class="p">,</span><span class="n">icost1</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">iYGROSS</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">icost1</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">iMIU</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">**</span><span class="n">expcost2</span>
+
+<span class="c1">#Marginal Abatement cost</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fMCABATE</span><span class="p">(</span><span class="n">iMIU</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pbacktime</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">iMIU</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">**</span><span class="p">(</span><span class="n">expcost2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#Price of carbon reduction</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fCPRICE</span><span class="p">(</span><span class="n">iMIU</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pbacktime</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">iMIU</span><span class="p">[</span><span class="n">index</span><span class="p">])</span><span class="o">**</span><span class="p">(</span><span class="n">expcost2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#Eq. 19: Dynamics of the carbon concentration in the atmosphere</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],float64[:],int32)&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">fMAT</span><span class="p">(</span><span class="n">iMAT</span><span class="p">,</span><span class="n">iMU</span><span class="p">,</span><span class="n">iE</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">mat0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">iMAT</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">b11</span> <span class="o">+</span> <span class="n">iMU</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">b21</span> <span class="o">+</span> <span class="n">iE</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mf">3.666</span>
+
+<span class="c1">#Eq. 21: Dynamics of the carbon concentration in the ocean LOW level</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">fML</span><span class="p">(</span><span class="n">iML</span><span class="p">,</span><span class="n">iMU</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ml0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">iML</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">b33</span>  <span class="o">+</span> <span class="n">iMU</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">b23</span>
+
+<span class="c1">#Eq. 20: Dynamics of the carbon concentration in the ocean UP level</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],float64[:],int32)&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">fMU</span><span class="p">(</span><span class="n">iMAT</span><span class="p">,</span><span class="n">iMU</span><span class="p">,</span><span class="n">iML</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">mu0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">iMAT</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">b12</span> <span class="o">+</span> <span class="n">iMU</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">b22</span> <span class="o">+</span> <span class="n">iML</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">b32</span>
+
+<span class="c1">#Eq. 23: Dynamics of the atmospheric temperature</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],float64[:],int32)&#39;</span><span class="p">)</span> 
+<span class="k">def</span> <span class="nf">fTATM</span><span class="p">(</span><span class="n">iTATM</span><span class="p">,</span><span class="n">iFORC</span><span class="p">,</span><span class="n">iTOCEAN</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">tatm0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">iTATM</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c1</span> <span class="o">*</span> <span class="p">(</span><span class="n">iFORC</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">fco22x</span><span class="o">/</span><span class="n">t2xco2</span><span class="p">)</span> <span class="o">*</span> <span class="n">iTATM</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">c3</span> <span class="o">*</span> <span class="p">(</span><span class="n">iTATM</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">iTOCEAN</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="c1">#Eq. 24: Dynamics of the ocean temperature</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fTOCEAN</span><span class="p">(</span><span class="n">iTATM</span><span class="p">,</span><span class="n">iTOCEAN</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">tocean0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">iTOCEAN</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c4</span> <span class="o">*</span> <span class="p">(</span><span class="n">iTATM</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">iTOCEAN</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Second: Function related to economic variables</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">#Interest rate equation; Eq. 26 added in personal notes</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fRI</span><span class="p">(</span><span class="n">iCPC</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">prstp</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">iCPC</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">iCPC</span><span class="p">[</span><span class="n">index</span><span class="p">])</span><span class="o">**</span><span class="p">(</span><span class="n">elasmu</span><span class="o">/</span><span class="n">tstep</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="c1">#Periodic utility: A form of Eq. 2</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fCEMUTOTPER</span><span class="p">(</span><span class="n">iPERIODU</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">iPERIODU</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">il</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">*</span> <span class="n">rr</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+<span class="c1">#The term between brackets in Eq. 2</span>
+<span class="nd">@njit</span><span class="p">(</span><span class="s1">&#39;float64(float64[:],float64[:],int32)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fPERIODU</span><span class="p">(</span><span class="n">iC</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">iC</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span><span class="o">/</span><span class="n">il</span><span class="p">[</span><span class="n">index</span><span class="p">])</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">elasmu</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">elasmu</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="c1">#utility function</span>
+<span class="nd">@guvectorize</span><span class="p">([(</span><span class="n">float64</span><span class="p">[:],</span> <span class="n">float64</span><span class="p">[:])],</span> <span class="s1">&#39;(n), (m)&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fUTILITY</span><span class="p">(</span><span class="n">iCEMUTOTPER</span><span class="p">,</span> <span class="n">resUtility</span><span class="p">):</span>
+    <span class="n">resUtility</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">tstep</span> <span class="o">*</span> <span class="n">scale1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">iCEMUTOTPER</span><span class="p">)</span> <span class="o">+</span> <span class="n">scale2</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">In this part we implement the objective function</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># * Control rate limits</span>
+<span class="n">MIU_lo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">NT</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">MIU_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">NT</span><span class="p">,</span><span class="n">limmiu</span><span class="p">)</span>
+<span class="n">MIU_up</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">MIU_lo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">miu0</span>
+<span class="n">MIU_up</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">miu0</span>
+<span class="n">MIU_lo</span><span class="p">[</span><span class="n">MIU_lo</span><span class="o">==</span><span class="n">MIU_up</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.99999</span><span class="o">*</span><span class="n">MIU_lo</span><span class="p">[</span><span class="n">MIU_lo</span><span class="o">==</span><span class="n">MIU_up</span><span class="p">]</span>
+<span class="n">bnds1</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NT</span><span class="p">):</span>
+    <span class="n">bnds1</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">MIU_lo</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">MIU_up</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="c1"># * Control variables</span>
+<span class="n">lag10</span> <span class="o">=</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">NT</span> <span class="o">-</span> <span class="mi">10</span>
+<span class="n">S_lo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">NT</span><span class="p">,</span><span class="mf">1e-1</span><span class="p">)</span>
+<span class="n">S_lo</span><span class="p">[</span><span class="n">lag10</span><span class="p">]</span> <span class="o">=</span> <span class="n">optlrsav</span>
+<span class="n">S_up</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">NT</span><span class="p">,</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">S_up</span><span class="p">[</span><span class="n">lag10</span><span class="p">]</span> <span class="o">=</span> <span class="n">optlrsav</span>
+<span class="n">S_lo</span><span class="p">[</span><span class="n">S_lo</span><span class="o">==</span><span class="n">S_up</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.99999</span><span class="o">*</span><span class="n">S_lo</span><span class="p">[</span><span class="n">S_lo</span><span class="o">==</span><span class="n">S_up</span><span class="p">]</span>
+<span class="n">bnds2</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NT</span><span class="p">):</span>
+    <span class="n">bnds2</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">S_lo</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">S_up</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    
+<span class="c1"># Arbitrary starting values for the control variables:</span>
+<span class="n">S_start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">NT</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">S_start</span><span class="p">[</span><span class="n">S_start</span> <span class="o">&lt;</span> <span class="n">S_lo</span><span class="p">]</span> <span class="o">=</span> <span class="n">S_lo</span><span class="p">[</span><span class="n">S_start</span> <span class="o">&lt;</span> <span class="n">S_lo</span><span class="p">]</span>
+<span class="n">S_start</span><span class="p">[</span><span class="n">S_start</span> <span class="o">&gt;</span> <span class="n">S_up</span><span class="p">]</span> <span class="o">=</span> <span class="n">S_lo</span><span class="p">[</span><span class="n">S_start</span> <span class="o">&gt;</span> <span class="n">S_up</span><span class="p">]</span>
+<span class="n">MIU_start</span> <span class="o">=</span> <span class="mf">0.99</span><span class="o">*</span><span class="n">MIU_up</span>
+<span class="n">MIU_start</span><span class="p">[</span><span class="n">MIU_start</span> <span class="o">&lt;</span> <span class="n">MIU_lo</span><span class="p">]</span> <span class="o">=</span> <span class="n">MIU_lo</span><span class="p">[</span><span class="n">MIU_start</span> <span class="o">&lt;</span> <span class="n">MIU_lo</span><span class="p">]</span>
+<span class="n">MIU_start</span><span class="p">[</span><span class="n">MIU_start</span> <span class="o">&gt;</span> <span class="n">MIU_up</span><span class="p">]</span> <span class="o">=</span> <span class="n">MIU_up</span><span class="p">[</span><span class="n">MIU_start</span> <span class="o">&gt;</span> <span class="n">MIU_up</span><span class="p">]</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">YGROSS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">EIND</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">CCA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">CCATOT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">MAT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">ML</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">MU</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">FORC</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">TATM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">TOCEAN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">DAMFRAC</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">DAMAGES</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">ABATECOST</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">MCABATE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">CPRICE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">YNET</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">CPC</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">RI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">PERIODU</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">CEMUTOTPER</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#For the optimal allocation of x, calculates the whole system variables</span>
+<span class="k">def</span> <span class="nf">Optimality</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">iI</span><span class="p">,</span><span class="n">iK</span><span class="p">,</span><span class="n">ial</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">iYGROSS</span><span class="p">,</span><span class="n">isigma</span><span class="p">,</span><span class="n">iEIND</span><span class="p">,</span><span class="n">iE</span><span class="p">,</span><span class="n">iCCA</span><span class="p">,</span><span class="n">iCCATOT</span><span class="p">,</span><span class="n">icumetree</span><span class="p">,</span><span class="n">iMAT</span><span class="p">,</span><span class="n">iMU</span><span class="p">,</span><span class="n">iML</span><span class="p">,</span><span class="n">iFORC</span><span class="p">,</span><span class="n">iTATM</span><span class="p">,</span><span class="n">iTOCEAN</span><span class="p">,</span><span class="n">iDAMFRAC</span><span class="p">,</span><span class="n">iDAMAGES</span><span class="p">,</span><span class="n">iABATECOST</span><span class="p">,</span><span class="n">icost1</span><span class="p">,</span><span class="n">iMCABATE</span><span class="p">,</span>
+         <span class="n">iCPRICE</span><span class="p">,</span><span class="n">iYNET</span><span class="p">,</span><span class="n">iY</span><span class="p">,</span><span class="n">iC</span><span class="p">,</span><span class="n">iCPC</span><span class="p">,</span><span class="n">iPERIODU</span><span class="p">,</span><span class="n">iCEMUTOTPER</span><span class="p">,</span><span class="n">iRI</span><span class="p">,</span><span class="n">iNT</span><span class="p">):</span>
+    
+    <span class="n">iMIU</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">NT</span><span class="p">]</span>
+    <span class="n">iS</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">NT</span><span class="p">:(</span><span class="mi">2</span><span class="o">*</span><span class="n">NT</span><span class="p">)]</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iNT</span><span class="p">):</span>
+        <span class="n">iK</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fK</span><span class="p">(</span><span class="n">iK</span><span class="p">,</span><span class="n">iI</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iYGROSS</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fYGROSS</span><span class="p">(</span><span class="n">ial</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">iK</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iEIND</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fEIND</span><span class="p">(</span><span class="n">iYGROSS</span><span class="p">,</span> <span class="n">iMIU</span><span class="p">,</span> <span class="n">isigma</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iE</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fE</span><span class="p">(</span><span class="n">iEIND</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iCCA</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fCCA</span><span class="p">(</span><span class="n">iCCA</span><span class="p">,</span><span class="n">iEIND</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iCCATOT</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fCCATOT</span><span class="p">(</span><span class="n">iCCA</span><span class="p">,</span><span class="n">icumetree</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iMAT</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fMAT</span><span class="p">(</span><span class="n">iMAT</span><span class="p">,</span><span class="n">iMU</span><span class="p">,</span><span class="n">iE</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iML</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fML</span><span class="p">(</span><span class="n">iML</span><span class="p">,</span><span class="n">iMU</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iMU</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fMU</span><span class="p">(</span><span class="n">iMAT</span><span class="p">,</span><span class="n">iMU</span><span class="p">,</span><span class="n">iML</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iFORC</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fFORC</span><span class="p">(</span><span class="n">iMAT</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iTATM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fTATM</span><span class="p">(</span><span class="n">iTATM</span><span class="p">,</span><span class="n">iFORC</span><span class="p">,</span><span class="n">iTOCEAN</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iTOCEAN</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fTOCEAN</span><span class="p">(</span><span class="n">iTATM</span><span class="p">,</span><span class="n">iTOCEAN</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iDAMFRAC</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fDAMFRAC</span><span class="p">(</span><span class="n">iTATM</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iDAMAGES</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fDAMAGES</span><span class="p">(</span><span class="n">iYGROSS</span><span class="p">,</span><span class="n">iDAMFRAC</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iABATECOST</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fABATECOST</span><span class="p">(</span><span class="n">iYGROSS</span><span class="p">,</span><span class="n">iMIU</span><span class="p">,</span><span class="n">icost1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iMCABATE</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fMCABATE</span><span class="p">(</span><span class="n">iMIU</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iCPRICE</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fCPRICE</span><span class="p">(</span><span class="n">iMIU</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iYNET</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fYNET</span><span class="p">(</span><span class="n">iYGROSS</span><span class="p">,</span> <span class="n">iDAMFRAC</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">iY</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fY</span><span class="p">(</span><span class="n">iYNET</span><span class="p">,</span><span class="n">iABATECOST</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iI</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fI</span><span class="p">(</span><span class="n">iS</span><span class="p">,</span><span class="n">iY</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iC</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fC</span><span class="p">(</span><span class="n">iY</span><span class="p">,</span><span class="n">iI</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iCPC</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fCPC</span><span class="p">(</span><span class="n">iC</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iPERIODU</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fPERIODU</span><span class="p">(</span><span class="n">iC</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iCEMUTOTPER</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fCEMUTOTPER</span><span class="p">(</span><span class="n">iPERIODU</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">iRI</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fRI</span><span class="p">(</span><span class="n">iCPC</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        
+    <span class="n">resUtility</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">fUTILITY</span><span class="p">(</span><span class="n">iCEMUTOTPER</span><span class="p">,</span> <span class="n">resUtility</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">resUtility</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">iI</span><span class="p">,</span><span class="n">iK</span><span class="p">,</span><span class="n">ial</span><span class="p">,</span><span class="n">il</span><span class="p">,</span><span class="n">iYGROSS</span><span class="p">,</span><span class="n">isigma</span><span class="p">,</span><span class="n">iEIND</span><span class="p">,</span><span class="n">iE</span><span class="p">,</span><span class="n">iCCA</span><span class="p">,</span><span class="n">iCCATOT</span><span class="p">,</span><span class="n">icumetree</span><span class="p">,</span><span class="n">iMAT</span><span class="p">,</span><span class="n">iMU</span><span class="p">,</span><span class="n">iML</span><span class="p">,</span><span class="n">iFORC</span><span class="p">,</span><span class="n">iTATM</span><span class="p">,</span><span class="n">iTOCEAN</span><span class="p">,</span><span class="n">iDAMFRAC</span><span class="p">,</span><span class="n">iDAMAGES</span><span class="p">,</span><span class="n">iABATECOST</span><span class="p">,</span><span class="n">icost1</span><span class="p">,</span><span class="n">iMCABATE</span><span class="p">,</span>
+         <span class="n">iCPRICE</span><span class="p">,</span><span class="n">iYNET</span><span class="p">,</span><span class="n">iY</span><span class="p">,</span><span class="n">iC</span><span class="p">,</span><span class="n">iCPC</span><span class="p">,</span><span class="n">iPERIODU</span><span class="p">,</span><span class="n">iCEMUTOTPER</span><span class="p">,</span><span class="n">iRI</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PlotFigures</span><span class="p">():</span>
+
+    <span class="n">figTATM</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">TATM</span><span class="p">)</span>
+    <span class="n">figTATM</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Increase temperature of the atmosphere (TATM)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Degrees C from 1900&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figTOCEAN</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">TOCEAN</span><span class="p">)</span>
+    <span class="n">figTOCEAN</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Increase temperature of the ocean (TOCEAN)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Degrees C from 1900&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figMU</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">MU</span><span class="p">)</span>
+    <span class="n">figMU</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Carbon concentration increase in shallow oceans (MU)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;GtC from 1750&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figML</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">ML</span><span class="p">)</span>
+    <span class="n">figML</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Carbon concentration increase in lower oceans (ML)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;GtC from 1750&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+    <span class="n">figDAM</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">DAMAGES</span><span class="p">)</span>
+    <span class="n">figDAM</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Damages&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;trillions 2010 USD per year&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figDAMFRAC</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">DAMFRAC</span><span class="p">)</span>
+    <span class="n">figDAMFRAC</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Damages as fraction of gross output&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figCOSTRED</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">ABATECOST</span><span class="p">)</span>
+    <span class="n">figCOSTRED</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Cost of emissions reductions&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;trillions 2010 USD per year&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figMarg</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">MCABATE</span><span class="p">)</span>
+    <span class="n">figMarg</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Marginal abatement cost&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;2010 USD per ton CO2&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figMIU</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">NT</span><span class="p">])</span>
+    <span class="n">figMIU</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Carbon emission control rate&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Rate&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figE</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">E</span><span class="p">)</span>
+    <span class="n">figE</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Total CO2 emission&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;GtCO2 per year&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figMAT</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">MAT</span><span class="p">)</span>
+    <span class="n">figMAT</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Carbon concentration increase in the atmosphere&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;GtC from 1750&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figFORC</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">FORC</span><span class="p">)</span>
+    <span class="n">figFORC</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Increase in radiative forcing&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;watts per m2 from 1900&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figRI</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">RI</span><span class="p">)</span>
+    <span class="n">figRI</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Real interest rate&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Rate per annum&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figC</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">C</span><span class="p">)</span>
+    <span class="n">figC</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Consumption&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;trillions 2010 USD per year&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figY</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
+    <span class="n">figY</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Gross product net of abatement and damages&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;trillions 2010 USD per year&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figYGROSS</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">YGROSS</span><span class="p">)</span>
+    <span class="n">figYGROSS</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;World gross product&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;trillions 2010 USD per year&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figYGROSSbyY</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">YGROSS</span><span class="o">-</span><span class="n">Y</span><span class="p">)</span>
+    <span class="n">figYGROSSbyY</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Abatement and damages costs&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;trillions 2010 USD per year&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figS</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">NT</span><span class="p">:(</span><span class="mi">2</span><span class="o">*</span><span class="n">NT</span><span class="p">)])</span>
+    <span class="n">figS</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Saving rate&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;rate&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">figI</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TT</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+    <span class="n">figI</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Investment (I)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;trillions 2010 USD per year&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    
+<span class="n">TT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2500</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
+<span class="n">InitializeLabor</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">InitializeTFP</span><span class="p">(</span><span class="n">al</span><span class="p">,</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">InitializeGrowthSigma</span><span class="p">(</span><span class="n">gsig</span><span class="p">,</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">InitializeSigma</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="n">gsig</span><span class="p">,</span><span class="n">cost1</span><span class="p">,</span><span class="n">NT</span><span class="p">)</span>
+<span class="n">InitializeCarbonTree</span><span class="p">(</span><span class="n">cumetree</span><span class="p">,</span><span class="n">NT</span><span class="p">)</span>
+
+<span class="n">x_start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">MIU_start</span><span class="p">,</span><span class="n">S_start</span><span class="p">])</span>
+<span class="n">bnds</span> <span class="o">=</span> <span class="n">bnds1</span> <span class="o">+</span> <span class="n">bnds2</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">fOBJ</span><span class="p">,</span> <span class="n">x_start</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">al</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">YGROSS</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">EIND</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="n">CCA</span><span class="p">,</span><span class="n">CCATOT</span><span class="p">,</span><span class="n">cumetree</span><span class="p">,</span><span class="n">MAT</span><span class="p">,</span><span class="n">MU</span><span class="p">,</span><span class="n">ML</span><span class="p">,</span><span class="n">FORC</span><span class="p">,</span><span class="n">TATM</span><span class="p">,</span><span class="n">TOCEAN</span><span class="p">,</span><span class="n">DAMFRAC</span><span class="p">,</span><span class="n">DAMAGES</span><span class="p">,</span><span class="n">ABATECOST</span><span class="p">,</span><span class="n">cost1</span><span class="p">,</span><span class="n">MCABATE</span><span class="p">,</span>
+     <span class="n">CPRICE</span><span class="p">,</span><span class="n">YNET</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">CPC</span><span class="p">,</span><span class="n">PERIODU</span><span class="p">,</span><span class="n">CEMUTOTPER</span><span class="p">,</span><span class="n">RI</span><span class="p">,</span><span class="n">NT</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">,</span><span class="n">bounds</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">bnds</span><span class="p">),</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;disp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+<span class="n">FOptimal</span> <span class="o">=</span> <span class="n">Optimality</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="n">I</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">al</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">YGROSS</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">EIND</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="n">CCA</span><span class="p">,</span><span class="n">CCATOT</span><span class="p">,</span><span class="n">cumetree</span><span class="p">,</span><span class="n">MAT</span><span class="p">,</span><span class="n">MU</span><span class="p">,</span><span class="n">ML</span><span class="p">,</span><span class="n">FORC</span><span class="p">,</span><span class="n">TATM</span><span class="p">,</span><span class="n">TOCEAN</span><span class="p">,</span><span class="n">DAMFRAC</span><span class="p">,</span><span class="n">DAMAGES</span><span class="p">,</span><span class="n">ABATECOST</span><span class="p">,</span><span class="n">cost1</span><span class="p">,</span><span class="n">MCABATE</span><span class="p">,</span>
+     <span class="n">CPRICE</span><span class="p">,</span><span class="n">YNET</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">CPC</span><span class="p">,</span><span class="n">PERIODU</span><span class="p">,</span><span class="n">CEMUTOTPER</span><span class="p">,</span><span class="n">RI</span><span class="p">,</span><span class="n">NT</span><span class="p">)</span>
+
+<span class="n">PlotFigures</span><span class="p">()</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/danypineault/Documents/Book/.conda/lib/python3.11/site-packages/scipy/optimize/_slsqp_py.py:437: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully    (Exit mode 0)
+            Current function value: -4517.318950957089
+            Iterations: 94
+            Function evaluations: 19032
+            Gradient evaluations: 94
+</pre></div>
+</div>
+<img alt="../../_images/ce3f64beb4754c34f411331b028f36f86f2a7c6caa23e7345522f031523bea7e.png" src="../../_images/ce3f64beb4754c34f411331b028f36f86f2a7c6caa23e7345522f031523bea7e.png" />
+<img alt="../../_images/ff58fe7bd29af26aa11bbe71ce77689e6f3d5f89c2cca5996f8bbca670473225.png" src="../../_images/ff58fe7bd29af26aa11bbe71ce77689e6f3d5f89c2cca5996f8bbca670473225.png" />
+<img alt="../../_images/279da842a4b51f48fb0fa544073e5d8ea063d7e728327b5027bad6ee4176631d.png" src="../../_images/279da842a4b51f48fb0fa544073e5d8ea063d7e728327b5027bad6ee4176631d.png" />
+<img alt="../../_images/b8b0dbe1a5b2880f23b924c9632b608ae4ad117b69dd6c80b4a677c361255f85.png" src="../../_images/b8b0dbe1a5b2880f23b924c9632b608ae4ad117b69dd6c80b4a677c361255f85.png" />
+<img alt="../../_images/e67f6db7c7729e2d003cbb98a4a5a7a064ff9c996a47e3625e17f3d5cb2f82fa.png" src="../../_images/e67f6db7c7729e2d003cbb98a4a5a7a064ff9c996a47e3625e17f3d5cb2f82fa.png" />
+<img alt="../../_images/6227ef726a3832af4370d8e558cbbf6db61e673c04a4b37cbdea141103735c77.png" src="../../_images/6227ef726a3832af4370d8e558cbbf6db61e673c04a4b37cbdea141103735c77.png" />
+<img alt="../../_images/d11ee10c5d60955c89fcfbf9ae01e86815c6cc634d8be506decf8300772f54f4.png" src="../../_images/d11ee10c5d60955c89fcfbf9ae01e86815c6cc634d8be506decf8300772f54f4.png" />
+<img alt="../../_images/0fb43b3e7bf0e3c2d45369f1fe183e4180f7fe53a72acf9e3f4d12a8d0ad3baf.png" src="../../_images/0fb43b3e7bf0e3c2d45369f1fe183e4180f7fe53a72acf9e3f4d12a8d0ad3baf.png" />
+<img alt="../../_images/9b1994d3a412009b6fa81d1aa670cd484bf234cdf5b14c5c0bdd725bc369046b.png" src="../../_images/9b1994d3a412009b6fa81d1aa670cd484bf234cdf5b14c5c0bdd725bc369046b.png" />
+<img alt="../../_images/20676ad7f0089242fb3e77a48c7cc72445cfb01493afdd7d2c9e42695009f93a.png" src="../../_images/20676ad7f0089242fb3e77a48c7cc72445cfb01493afdd7d2c9e42695009f93a.png" />
+<img alt="../../_images/e59936fadcabfdf426a8e277038f1823cf8883d947d89859210299c3daf67b5d.png" src="../../_images/e59936fadcabfdf426a8e277038f1823cf8883d947d89859210299c3daf67b5d.png" />
+<img alt="../../_images/7e0e0dcb2224d71e5266e0612fbeeb7c45466c414ffb77e43c574845933ccc49.png" src="../../_images/7e0e0dcb2224d71e5266e0612fbeeb7c45466c414ffb77e43c574845933ccc49.png" />
+<img alt="../../_images/4c2860940b403bfefaf49341d895740df6fade316f273258fb5493b4b3560c11.png" src="../../_images/4c2860940b403bfefaf49341d895740df6fade316f273258fb5493b4b3560c11.png" />
+<img alt="../../_images/d2d3583fab4aab0b3c446ec741efe782eeabfb4f20e6c844d2b3dd7f5ead576d.png" src="../../_images/d2d3583fab4aab0b3c446ec741efe782eeabfb4f20e6c844d2b3dd7f5ead576d.png" />
+<img alt="../../_images/7cdf4311099976ca4b7662b1e6326567e02d9ce2ae13a9f60e30c426a1ad67b2.png" src="../../_images/7cdf4311099976ca4b7662b1e6326567e02d9ce2ae13a9f60e30c426a1ad67b2.png" />
+<img alt="../../_images/08d3b9b36d07ea6a5ad734fafbf19fcb20d17cd8a8d648fb320873b455976cb9.png" src="../../_images/08d3b9b36d07ea6a5ad734fafbf19fcb20d17cd8a8d648fb320873b455976cb9.png" />
+<img alt="../../_images/a86630ce92c89b81f898a2c54c3280e614130c2e2c9a64b7cd33bb9e3fd32dbc.png" src="../../_images/a86630ce92c89b81f898a2c54c3280e614130c2e2c9a64b7cd33bb9e3fd32dbc.png" />
+<img alt="../../_images/3165bd37c6c0ab2a913cecb47a00702001dd49f8994b23bddf382dba281ab4f0.png" src="../../_images/3165bd37c6c0ab2a913cecb47a00702001dd49f8994b23bddf382dba281ab4f0.png" />
+<img alt="../../_images/b8c5e2c79ac3119f04e157dd009cd1eec5a43e8572b347e25fecdb5facfa3c7d.png" src="../../_images/b8c5e2c79ac3119f04e157dd009cd1eec5a43e8572b347e25fecdb5facfa3c7d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.73815393447876
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/iam"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Objective Function</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#economics-module">Economics Module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics">Dynamics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#emission-module">Emission Module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Dynamics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#carbon-cycle">Carbon cycle</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-condition">Initial Condition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-paramaters-denoted-by-phi-ij-in-the-model">Flow paramaters, denoted by Phi_ij in the model</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-model">Climate model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-damage">Climate damage</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Parameters</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dany Pineault
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

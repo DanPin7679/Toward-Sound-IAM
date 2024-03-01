@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Population Growth Models &#8212; Modelling the World</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/iam/systdyn/Population';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Modelling the World</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../history/intro.html">Evolution of the different Paradigms</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../history/env-econo.html">Environmental Economics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history/ecolo-econo.html">Ecological Economics</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../economics/growthModels/Intro.html">Growth Models</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../economics/growthModels/models/SolowModel.html">The Solow-Swan Growth Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../appendix/intro.html">Appendix</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/modelling.html">Modelling</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/iam/systdyn/Population.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/content/iam/systdyn/Population.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Population Growth Models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-2d-continuous-models">Two-Dimensional (2D) Continuous Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#malthusian-model">Malthusian Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verhulst-pearl-logistic-model">Verhulst-Pearl Logistic Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gompertz-growth-model">Gompertz Growth Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-with-allee-effect">Model with Allee Effect</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Two-Dimensional (2D) Continuous Models</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">integrate</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">drawStockEvol</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">stock</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">stock</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="population-growth-models">
+<h1>Population Growth Models<a class="headerlink" href="#population-growth-models" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_init</span> <span class="o">=</span> <span class="mf">1.65e9</span>
+<span class="n">BR</span> <span class="o">=</span> <span class="mf">0.04</span>
+<span class="n">DR</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mf">12e9</span>
+<span class="n">K0</span> <span class="o">=</span> <span class="mf">1e9</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="n">t_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="two-dimensional-2d-continuous-models">
+<h2>Two-Dimensional (2D) Continuous Models<a class="headerlink" href="#two-dimensional-2d-continuous-models" title="Link to this heading">#</a></h2>
+<section id="malthusian-model">
+<h3>Malthusian Model<a class="headerlink" href="#malthusian-model" title="Link to this heading">#</a></h3>
+<p>The mathematical model representing the dynamics of the population is given by the initial value problem</p>
+<p><span class="math notranslate nohighlight">\(\frac{dP}{dt}=rP\)</span>, <span class="math notranslate nohighlight">\(P(t_0)=P_0\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(r=b-d\)</span> is called the intrinsic growth rate or reproduction rate</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dp_dt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">BR</span> <span class="o">-</span> <span class="n">DR</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">dp_dt</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="p">[</span><span class="n">p_init</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+<span class="n">drawStockEvol</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1970</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="k">return</span> <span class="p">(</span><span class="n">BR</span> <span class="o">-</span> <span class="n">DR</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">dp_dt</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="p">[</span><span class="n">p_init</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">drawStockEvol</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1970</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+
+<span class="nn">Cell In[2], line 4,</span> in <span class="ni">drawStockEvol</span><span class="nt">(t, xs, stock)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">4</span>     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">stock</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/matplotlib/pyplot.py:2812,</span> in <span class="ni">plot</span><span class="nt">(scalex, scaley, data, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2810</span> <span class="nd">@_copy_docstring_and_deprecators</span><span class="p">(</span><span class="n">Axes</span><span class="o">.</span><span class="n">plot</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2811</span> <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">scalex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scaley</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">2812</span>     <span class="k">return</span> <span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2813</span>         <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">scalex</span><span class="o">=</span><span class="n">scalex</span><span class="p">,</span> <span class="n">scaley</span><span class="o">=</span><span class="n">scaley</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2814</span>         <span class="o">**</span><span class="p">({</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span> <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/matplotlib/axes/_axes.py:1688,</span> in <span class="ni">Axes.plot</span><span class="nt">(self, scalex, scaley, data, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1445</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1446</span><span class="sd"> Plot y versus x as lines and/or markers.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1447</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1685</span><span class="sd"> (``&#39;green&#39;``) or hex strings (``&#39;#008000&#39;``).</span>
+<span class="g g-Whitespace">   </span><span class="mi">1686</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1687</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">cbook</span><span class="o">.</span><span class="n">normalize_kwargs</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1688</span> <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1689</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1690</span>     <span class="bp">self</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/matplotlib/axes/_base.py:311,</span> in <span class="ni">_process_plot_var_args.__call__</span><span class="nt">(self, data, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>     <span class="n">this</span> <span class="o">+=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="ne">--&gt; </span><span class="mi">311</span> <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_args</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="n">this</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">ambiguous_fmt_datakey</span><span class="o">=</span><span class="n">ambiguous_fmt_datakey</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.11/site-packages/matplotlib/axes/_base.py:504,</span> in <span class="ni">_process_plot_var_args._plot_args</span><span class="nt">(self, tup, kwargs, return_kwargs, ambiguous_fmt_datakey)</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span>     <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">update_units</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">503</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+<span class="ne">--&gt; </span><span class="mi">504</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x and y must have same first dimension, but &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">505</span>                      <span class="sa">f</span><span class="s2">&quot;have shapes </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">506</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">507</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x and y can be no greater than 2D, but have &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">508</span>                      <span class="sa">f</span><span class="s2">&quot;shapes </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: x and y must have same first dimension, but have shapes (130,) and (1,)
+</pre></div>
+</div>
+<img alt="../../../_images/5eb5c47ff8a193c2e5d07179afa3068cae6338f55ce62d44ed4588e1a2f5a241.png" src="../../../_images/5eb5c47ff8a193c2e5d07179afa3068cae6338f55ce62d44ed4588e1a2f5a241.png" />
+</div>
+</div>
+<p>This model is called the Malthusian model or an exponential model. It is
+restrictive due to the following assumptions.</p>
+<ul class="simple">
+<li><p>The per capita growth rate (1/P) (AP/dt) is always a constant. That is, contribution due to an average individual is always a constant given by r and this contribution does not depend on the density of the population.</p></li>
+<li><p>The growth rate of the population dP/dt si always either increasing (ifr &gt;0) or decreasing (ifr &lt;0). The process is exponential growth (or exponential decay).</p></li>
+<li><p>The population grows (decays) exponentially from the initial value Po. The population will remain constant when the births and deaths balance each other, that is, <span class="math notranslate nohighlight">\(b=d\)</span> or <span class="math notranslate nohighlight">\(r=0\)</span>.</p></li>
+</ul>
+</section>
+<section id="verhulst-pearl-logistic-model">
+<h3>Verhulst-Pearl Logistic Model<a class="headerlink" href="#verhulst-pearl-logistic-model" title="Link to this heading">#</a></h3>
+<p>The mathematical model representing the dynamics of the population is given by the initial value problem</p>
+<p><span class="math notranslate nohighlight">\(\frac{dP}{dt}=rP(1-\frac{P}{K})\)</span>, <span class="math notranslate nohighlight">\(P(t_0)=P_0\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(K\)</span> is called the carrying capacity of the environment, which is determined by the available sustaining resources.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dp_dt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">BR</span> <span class="o">-</span> <span class="n">DR</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">dp_dt</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="p">[</span><span class="n">p_init</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+<span class="n">drawStockEvol</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1970</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/cf8149ddc6e31bfe560c21a00a5315e569a8b714a9b9429e435e660da223d9ad.png" src="../../../_images/cf8149ddc6e31bfe560c21a00a5315e569a8b714a9b9429e435e660da223d9ad.png" />
+</div>
+</div>
+<p>When the population is small, that is, <span class="math notranslate nohighlight">\(P(t)\)</span> is small, the second P can be neglected and the population grows exponentially.</p>
+<p>When <span class="math notranslate nohighlight">\(P(t)\)</span> becomes large, the second term on the right-hand side dominates and the population decreases, thus providing a natural balancing of population.</p>
+<p>The solution of this equation is the S-shaped curve called the sigmoid curve</p>
+</section>
+<section id="gompertz-growth-model">
+<h3>Gompertz Growth Model<a class="headerlink" href="#gompertz-growth-model" title="Link to this heading">#</a></h3>
+<p>The mathematical model representing the dynamics of the population is given by the initial value problem</p>
+<p><span class="math notranslate nohighlight">\(\frac{dP}{dt}=re^{-at}P\)</span>, <span class="math notranslate nohighlight">\(P(t_0)=P_0\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(K\)</span> is called the carrying capacity of the environment, which is determined by the available sustaining resources.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dp_dt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">BR</span> <span class="o">-</span> <span class="n">DR</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span> 
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">dp_dt</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="p">[</span><span class="n">p_init</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+<span class="n">drawStockEvol</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1970</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/982f7efb3d718aef743ae452225d21428fd47bc3c8805fa56579d8c694ab4874.png" src="../../../_images/982f7efb3d718aef743ae452225d21428fd47bc3c8805fa56579d8c694ab4874.png" />
+</div>
+</div>
+</section>
+<section id="model-with-allee-effect">
+<h3>Model with Allee Effect<a class="headerlink" href="#model-with-allee-effect" title="Link to this heading">#</a></h3>
+<p>The mathematical model representing the dynamics of the population is given by the initial value problem</p>
+<p><span class="math notranslate nohighlight">\(\frac{dP}{dt}=rP(\frac{P}{K_0}-1)(1-\frac{P}{K})\)</span>, <span class="math notranslate nohighlight">\(P(t_0)=P_0\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(K\)</span> is called the carrying capacity of the environment, which is determined by the available sustaining resources.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dp_dt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">K0</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">BR</span> <span class="o">-</span> <span class="n">DR</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="n">K0</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+
+<span class="n">P0</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">dp_dt</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="p">[</span><span class="n">P0</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+<span class="n">drawStockEvol</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1970</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/132b05da0277a340988725dff96b43a6898937e8add1e90a9ae41517e9f7ae21.png" src="../../../_images/132b05da0277a340988725dff96b43a6898937e8add1e90a9ae41517e9f7ae21.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dp_dt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">K0</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">BR</span> <span class="o">-</span> <span class="n">DR</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="n">K0</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+
+<span class="n">P0</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">dp_dt</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="p">[</span><span class="n">P0</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+<span class="n">drawStockEvol</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1970</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/31bbdbd193b5a9de4c17f5ef924e9dca5f1541ffe97d09c13614bb87b9bdad34.png" src="../../../_images/31bbdbd193b5a9de4c17f5ef924e9dca5f1541ffe97d09c13614bb87b9bdad34.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dp_dt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">K0</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">BR</span> <span class="o">-</span> <span class="n">DR</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="n">K0</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+
+<span class="n">P0</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">dp_dt</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="p">[</span><span class="n">P0</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+<span class="n">drawStockEvol</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1970</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/c30a4701b6dd0cc889f23a6ac1bf8de8bf16d32b7098fbbdc837ab089df5d380.png" src="../../../_images/c30a4701b6dd0cc889f23a6ac1bf8de8bf16d32b7098fbbdc837ab089df5d380.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dp_dt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">K0</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">BR</span> <span class="o">-</span> <span class="n">DR</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="n">K0</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+
+<span class="n">P0</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">dp_dt</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="p">[</span><span class="n">P0</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+<span class="n">drawStockEvol</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1970</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/9be717e6eb58bcf8f26f00a9dddcd1831cd407bfde7c86572d9b7e36927e8c4f.png" src="../../../_images/9be717e6eb58bcf8f26f00a9dddcd1831cd407bfde7c86572d9b7e36927e8c4f.png" />
+</div>
+</div>
+<p>If <span class="math notranslate nohighlight">\(P(0)=Po=m\)</span>,then <span class="math notranslate nohighlight">\(C=0\)</span> and <span class="math notranslate nohighlight">\(P(t)=m\)</span>, which means that the population is stationary.</p>
+<p>If <span class="math notranslate nohighlight">\(P(0) = P_0 &gt; m\)</span>, then <span class="math notranslate nohighlight">\(0&lt;C&lt;1\)</span>. As <span class="math notranslate nohighlight">\(t \rightarrow \infty, P(t) \rightarrow K\)</span>, that is, the carrying capacity. Al the solution trajectories starting with initial values <span class="math notranslate nohighlight">\(P_0 &gt; m\)</span> converge ot the carrying capacity.</p>
+<p>If <span class="math notranslate nohighlight">\(P(0) = P_0 &lt; m\)</span>, then <span class="math notranslate nohighlight">\(C &lt; 0\)</span> and <span class="math notranslate nohighlight">\(P(t)\)</span> become negative for small value of <span class="math notranslate nohighlight">\(P_0\)</span>. This implies that for <span class="math notranslate nohighlight">\(0&lt;P_0&lt;m, P(t)\rightarrow 0\)</span>, that is, the population becomes extinct.</p>
+</section>
+</section>
+<section id="id1">
+<h2>Two-Dimensional (2D) Continuous Models<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\frac{dX}{dt} = X f(X) - Y p(X,Y) = XF(X,Y)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{dY}{dt} = -d Y + q Y p(X,Y) = YG(X,Y)\)</span></p>
+<p>where</p>
+<p><span class="math notranslate nohighlight">\(X\)</span>: Density of preys (resource, victim) population. <span class="math notranslate nohighlight">\(X \geq 0\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(Y\)</span>: Density of predators (consumer, exploiter) population. <span class="math notranslate nohighlight">\(Y \geq 0\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(f(X)\)</span>: Per capita growth rate of prey in the absence of predation.</p>
+<p><span class="math notranslate nohighlight">\(\delta\)</span>: Food-independent predator mortality, which is assumed ot be a constant.</p>
+<p><span class="math notranslate nohighlight">\(p(X,Y)\)</span>: Trophic function. It is called the functional response in the prey equation and numerical response in the predator equation.</p>
+<p><span class="math notranslate nohighlight">\(\theta\)</span>: Conversion efficiency or trophic efficiency.</p>
+<p><span class="math notranslate nohighlight">\(F, G\)</span>: Continuous and analytic functions in the domain <span class="math notranslate nohighlight">\(X \geq 0, Y \geq 0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.</span> <span class="c1">#mortality rate due to predators</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">]</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mf">4.</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="mf">2.</span>
+<span class="nb">vars</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">derivative</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X</span>
+    <span class="n">dotx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">alpha</span> <span class="o">-</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">doty</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">delta</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dotx</span><span class="p">,</span> <span class="n">doty</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nt</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="mf">30.</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="n">tmax</span><span class="p">,</span> <span class="n">Nt</span><span class="p">)</span>
+<span class="n">X0</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">derivative</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">))</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drawStockEvol</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1970</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/8e6fb1f56f1a711bf9bd320b38d3517e89d578ea1c012e7d1188365b67ab8e97.png" src="../../../_images/8e6fb1f56f1a711bf9bd320b38d3517e89d578ea1c012e7d1188365b67ab8e97.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dp_dt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X</span>
+    <span class="n">dotx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">alpha</span> <span class="o">-</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">doty</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">delta</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dotx</span><span class="p">,</span> <span class="n">doty</span><span class="p">])</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">dp_dt</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">131</span><span class="p">],</span> <span class="nb">vars</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+<span class="n">drawStockEvol</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1970</span><span class="p">,</span> <span class="p">[</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/81ff7b1d61851a2f1f0805b6ee4c38875b4cac0b6b0953e207c864026907e345.png" src="../../../_images/81ff7b1d61851a2f1f0805b6ee4c38875b4cac0b6b0953e207c864026907e345.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content/iam/systdyn"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-2d-continuous-models">Two-Dimensional (2D) Continuous Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#malthusian-model">Malthusian Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verhulst-pearl-logistic-model">Verhulst-Pearl Logistic Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gompertz-growth-model">Gompertz Growth Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-with-allee-effect">Model with Allee Effect</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Two-Dimensional (2D) Continuous Models</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dany Pineault
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
