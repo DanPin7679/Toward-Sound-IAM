@@ -73,6 +73,34 @@ Narrow: utility is individual, human utility; welfare is sum of utilities
 
 Broad: utility includes altruism and non-humans; welfare is some function of utilitities
 
+#### Welfare theory
+
+Situation A is Pareto superior to Situation B if at least one is better off and none are worse off
+
+A situation is Pareto optimal, or efficient, if there are no Pareto improvements
+
+Situation A is a potential Pareto improvement to situation B if it is Pareto superior after transfers, that is, if the winners compensate the losers
+
+- Jargon: it satisfies the Kaldor-Hicks criterion
+
+Welfare theorems
+
+A perfectly competitive equilibrium is a Pareto optimum
+
+- First fundamental welfare theorem
+  Any Pareto optimum can be achieved as a perfectly competitive equilibrium with the appropriate reallocation of resources
+- Second fundamental welfare theorem
+
+One way to see Utility vs Welfare is how it is calculated:
+
+$$
+W = W(U_1, U_2,..., U_n) \text{: where } U_i = U_i(X_i)
+$$
+
+$$
+W = \frac{\sum_{i=0}^n{U_i^{1-\gamma}}}{1-\gamma}
+$$
+
 ## Proto-Economics
 
 Early economists wrote mostly about agriculture, farm management, and crop prices
@@ -203,3 +231,6 @@ an economist
 
 economics gives no signs of acknowledging the role of natural resources in the economic process... the product of the economic process is waste, waste is an inevitable result of that process and ceteris paribus increases in greater proportion than the intensity of economic activity
 Models of the economy as a part of the natural environment
+
+$$
+$$
